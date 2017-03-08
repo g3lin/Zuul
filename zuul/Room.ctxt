@@ -9,4 +9,6 @@ comment3.params=pDirection
 comment3.target=Room\ getExit(java.lang.String)
 comment4.params=
 comment4.target=void\ printLocationInfo()
-numComments=5
+comment5.params=
+comment5.target=java.lang.String\ getExitString()
+numComments=6

@@ -49,18 +49,26 @@ public class Room
                 System.out.println(this.getDescription());
                 System.out.print("Vous pouvez aller vers: ");
             String vExits = "";
-             if (this.aNorthExit != null){
+             
+             System.out.println(this.getExitString())  ;
+        }
+        
+        public String getExitString(){
+            String vExits = "";
+            if (this.getExit("north") != null){
                       vExits += "Nord ";
                     }
-             if (this.aSouthExit != null){
+             if (this.getExit("south") != null){
                vExits += "Sud ";
              }
-             if (this.aEastExit != null){
+             if (this.getExit("east") != null){
                vExits += "Est ";
              }
-             if (this.aWestExit != null){
+             if (this.getExit("west") != null){
                 vExits += "Ouest ";
                }
-             System.out.println(vExits)  ;
+            
+            
+            return vExits;
         }
 } // Room
