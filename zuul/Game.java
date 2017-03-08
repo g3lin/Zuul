@@ -40,17 +40,38 @@ public class Game
         
         this.aCurrentRoom=vHall;
         // Nord sud est ouest
-        vHall.setExits(vCouloirF,null,vCouloirD,vCouloirG);
-        vCouloirD.setExits(null,null,vChambreDAmis,vHall);
-        vCouloirG.setExits(null,null,vHall,vChambrePrincipale);
-        vCouloirF.setExits(vBibliotheque,vHall,vCouloirD,vCouloirG);
-        vBibliotheque.setExits(null,vCouloirF,null,null);
-        vChambreDAmis.setExits(vAntichambreDAmis,null,null,vCouloirD);
-        vAntichambreDAmis.setExits(vSallePuzzle,vChambreDAmis,null,null);
-        vSallePuzzle.setExits(vEscape,vAntichambreDAmis,null,null);
-        vChambrePrincipale.setExits(vSalleEquipement,null,vCouloirG,null);
-        vSalleEquipement.setExits(null,vChambrePrincipale,null,null);
-        vEscape.setExits(null,vSallePuzzle,null,null);
+        vHall.setExits("north",vCouloirF);
+        vHall.setExits("east",vCouloirD);
+        vHall.setExits("west",vCouloirG);
+        
+        vCouloirD.setExits("east",vChambreDAmis);
+        vCouloirD.setExits("west",vHall);
+        
+        vCouloirG.setExits("east",vHall);
+        vCouloirG.setExits("west",vChambrePrincipale);
+        
+        vCouloirF.setExits("north",vBibliotheque);
+        vCouloirF.setExits("south",vHall);
+        vCouloirF.setExits("east",vCouloirD);
+        vCouloirF.setExits("west",vCouloirG);
+        
+        vBibliotheque.setExits("south",vCouloirF);
+        
+        vChambreDAmis.setExits("north",vAntichambreDAmis);
+        vChambreDAmis.setExits("west",vCouloirD);
+        
+        vAntichambreDAmis.setExits("north",vSallePuzzle);
+        vAntichambreDAmis.setExits("south",vChambreDAmis);
+        
+        vSallePuzzle.setExits("north",vEscape);
+        vSallePuzzle.setExits("south",vAntichambreDAmis);
+        
+        vChambrePrincipale.setExits("north",vSalleEquipement);
+        vChambrePrincipale.setExits("east",vCouloirG);
+        
+        vSalleEquipement.setExits("south",vChambrePrincipale);
+        
+        vEscape.setExits("south",vSallePuzzle);
         
         
 

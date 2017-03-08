@@ -1,47 +1,26 @@
- 
+ import java.util.HashMap;
 
 public class Room
 {
        private String aDescription = "c'est une pièce" ;
-       public Room aNorthExit = null;
-       public Room aSouthExit = null;
-       public Room aEastExit = null;
-       public Room aWestExit = null;
+       private HashMap<String,Room> aExits;
        
        public Room(final String pDescription){
            this.aDescription=pDescription;
+           aExits = new  HashMap<String,Room>();
         }
         
         public String getDescription() {
             return this.aDescription;
         }
         
-        public void setExits(final Room pRoomN,final Room pRoomS,final Room pRoomE,final Room pRoomW){
-            this.aNorthExit = pRoomN;
-            this.aSouthExit = pRoomS;
-            this.aEastExit = pRoomE;
-            this.aWestExit = pRoomW;
-                        
+        public void setExits(String pDirection, Room pExit){
+            aExits.put(pDirection,pExit);
+            
         }
         
         public Room getExit(final String pDirection){
-                if (pDirection.equals("north")){
-                    return this.aNorthExit;
-                }
-                
-                if (pDirection.equals("south")){
-                    return this.aSouthExit;
-                }
-                
-                if (pDirection.equals("east")){
-                    return this.aEastExit;
-                }
-                
-                if (pDirection.equals("west")){
-                    return this.aWestExit;
-                }
-                
-                return null;
+               return aExits.get(pDirection);
         }
         
         public void printLocationInfo(){
