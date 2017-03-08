@@ -82,10 +82,8 @@ public class Game
             }
             else{
                 this.aCurrentRoom=vNextRoom;
-                System.out.print("You are ");
-                System.out.println(this.aCurrentRoom.getDescription());
-                System.out.print("Exits: ");
-                System.out.println(this.aCurrentRoom.getExits());
+                
+                this.aCurrentRoom.printLocationInfo();
             }
       
     }
@@ -94,10 +92,7 @@ public class Game
     public void printWelcome() {
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.print("You are ");
-        System.out.println(this.aCurrentRoom.getDescription());
-        System.out.print("Exits: ");
-        System.out.println(this.aCurrentRoom.getExits());
+        this.aCurrentRoom.printLocationInfo();
     }
     
     

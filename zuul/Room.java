@@ -24,20 +24,23 @@ public class Room
                         
         }
         
-        public String getExits(){
+        public void printLocationInfo(){
+                System.out.print("Vous êtes dans ");
+                System.out.println(this.getDescription());
+                System.out.print("Vous pouvez aller vers: ");
             String vExits = "";
              if (this.aNorthExit != null){
-                      vExits += "North ";
+                      vExits += "Nord ";
                     }
              if (this.aSouthExit != null){
-               vExits += "South ";
+               vExits += "Sud ";
              }
              if (this.aEastExit != null){
-               vExits += "East ";
+               vExits += "Est ";
              }
              if (this.aWestExit != null){
-                vExits += "West ";
+                vExits += "Ouest ";
                }
-             return vExits  ;
+             System.out.println(vExits)  ;
         }
 } // Room
