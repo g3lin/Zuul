@@ -9,7 +9,7 @@
  * @version 2008.03.30 + 2013.09.15
  */
 
-package v1;
+ 
 
 public class CommandWords
 {

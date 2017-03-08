@@ -1,4 +1,4 @@
-package v1;
+ 
 
 public class Game
 {
@@ -7,7 +7,7 @@ public class Game
     
     public Game(){
         createRooms();
-        this.aParser = new v1.Parser();
+        this.aParser = new Parser();
         play();
     }
     
