@@ -24,6 +24,26 @@ public class Room
                         
         }
         
+        public Room getExit(final String pDirection){
+                if (pDirection.equals("north")){
+                    return this.aNorthExit;
+                }
+                
+                if (pDirection.equals("south")){
+                    return this.aSouthExit;
+                }
+                
+                if (pDirection.equals("east")){
+                    return this.aEastExit;
+                }
+                
+                if (pDirection.equals("west")){
+                    return this.aWestExit;
+                }
+                
+                return null;
+        }
+        
         public void printLocationInfo(){
                 System.out.print("Vous êtes dans ");
                 System.out.println(this.getDescription());

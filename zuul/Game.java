@@ -57,25 +57,13 @@ public class Game
     }
     
     public void goRoom(final Command pCommand) {
-       Room vNextRoom = null;
+       
         if (!pCommand.hasSecondWord()) {
             System.out.println("go where ?");
             return;
         }
       String vDirection = pCommand.getSecondWord() ;
-          if (vDirection.equals("north")){
-          vNextRoom = this.aCurrentRoom.aNorthExit;
-        }
-          if (vDirection.equals("south")){
-          vNextRoom = this.aCurrentRoom.aSouthExit;
-        }
-          if (vDirection.equals("east")){
-          vNextRoom = this.aCurrentRoom.aEastExit;
-        }
-          if (vDirection.equals("west")){
-          vNextRoom = this.aCurrentRoom.aWestExit;
-        }
-        
+        Room vNextRoom = this.aCurrentRoom.getExit(vDirection);
             if (vNextRoom == null){
                 System.out.print("There is no door !");
                 return ;
