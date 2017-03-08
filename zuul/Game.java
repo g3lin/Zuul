@@ -25,19 +25,33 @@ public class Game
     
     
     private void createRooms(){
-        Room vOutside = new Room("outside the main entrance of the university" );
-        Room vTheatre = new Room("in a lecture theatre" );
-        Room vPub = new Room("in the campus pub" );
-        Room vLab = new Room("in a computing lab" );
-        Room vOffice = new Room("in the computing admin office" );
+        Room vHall = new Room("Hall d'entrée central du manoir" );
+        Room vCouloirD = new Room("Couloir à droite de l'entrée" );
+        Room vCouloirG = new Room("Couloir à Gauche de l'entrée" );
+        Room vCouloirF = new Room("Couloir en face de l'entrée" );
+        Room vBibliotheque = new Room("Grande bibliothèque" );
+        Room vChambreDAmis = new Room("Chambre d'amis" );
+        Room vAntichambreDAmis = new Room("Antihambre de la chambre d'amis" );
+        Room vSallePuzzle = new Room("Salle du puzzle" );
+        Room vChambrePrincipale = new Room("Chambre du maitre de maison" );
+        Room vSalleEquipement = new Room("Salle secrete de l'équipement" );
+        Room vEscape = new Room("Crypte avec un bateau pour s'echapper" );
         
-        this.aCurrentRoom=vOutside;
         
-        vOutside.setExits(null,vLab,vTheatre,vPub);
-        vTheatre.setExits(null,null,null,vOutside);
-        vPub.setExits(null,null,vOutside,null);
-        vLab.setExits(vOutside,null,vOffice,null);
-        vOffice.setExits(null,null,null,vLab);
+        this.aCurrentRoom=vHall;
+        // Nord sud est ouest
+        vHall.setExits(vCouloirF,null,vCouloirD,vCouloirG);
+        vCouloirD.setExits(null,null,vChambreDAmis,vHall);
+        vCouloirG.setExits(null,null,vHall,vChambrePrincipale);
+        vCouloirF.setExits(vBibliotheque,vHall,vCouloirD,vCouloirG);
+        vBibliotheque.setExits(null,vCouloirF,null,null);
+        vChambreDAmis.setExits(vAntichambreDAmis,null,null,vCouloirD);
+        vAntichambreDAmis.setExits(vSallePuzzle,vChambreDAmis,null,null);
+        vSallePuzzle.setExits(vEscape,vAntichambreDAmis,null,null);
+        vChambrePrincipale.setExits(vSalleEquipement,null,vCouloirG,null);
+        vSalleEquipement.setExits(null,vChambrePrincipale,null,null);
+        vEscape.setExits(null,vSallePuzzle,null,null);
+        
         
 
     }
