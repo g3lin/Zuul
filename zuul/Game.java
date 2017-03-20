@@ -167,6 +167,12 @@ public class Game
                     look();
                     return false;
             }
+            
+            else if (vCommandWord.equals("eat")){
+                    eat();
+                    return false;
+            }
+ 
         
             return false;
     }
@@ -188,4 +194,10 @@ public class Game
     private void look() {
         this.aCurrentRoom.getLongDescription() ;
     }
+    
+    private void eat() {
+        System.out.println ("Vous avez maintenant mangé ");
+        System.out.println ("Vous n'avez plus faim du tout ");
+     }
+
 } // Game

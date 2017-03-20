@@ -25,4 +25,6 @@ comment7.target=boolean\ quit(Command)
 comment7.text=\n\ verifie\ si\ le\ joueur\ veut\ bien\ quitter\ et\ renvoie\ true\ si\ c'est\ le\ cas\n\ @param\ une\ command\n\ @return\ le\ fait\ ou\ non\ que\ la\ command\ ait\ un\ 2nd\ mot\n
 comment8.params=
 comment8.target=void\ look()
-numComments=9
+comment9.params=
+comment9.target=void\ eat()
+numComments=10
