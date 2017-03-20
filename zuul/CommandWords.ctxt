@@ -6,6 +6,6 @@ comment1.params=pString
 comment1.target=boolean\ isCommand(java.lang.String)
 comment1.text=\n\ Verifie\ si\ une\ String\ donnee\ fait\ partie\ des\ commandes\ valides.\ \n\ @param\ pString\ la\ String\ a\ tester\n\ @return\ true\ si\ pString\ est\ une\ comande\ valide,\ false\ sinon\n
 comment2.params=
-comment2.target=void\ showAll()
+comment2.target=java.lang.String\ showAll()
 comment2.text=\n\ Print\ all\ valid\ commands\ \n
 numComments=3

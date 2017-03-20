@@ -196,10 +196,8 @@ public class Game
      * procedure affichant via S.o.p le message d'aide si le joueur l'a demandé
      */
     public void printHelp(){
-        System.out.println("You are lost. You are alone.");
-        System.out.println("You wander around at the university.");
-        System.out.println("Your command words are:");
-        this.aParser.showCommands();
+        System.out.println("Vos commandes sont:");
+        System.out.println( this.aParser.showCommands() );
     }
    
 

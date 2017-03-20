@@ -47,10 +47,11 @@ public class CommandWords
     /**
      * Print all valid commands 
      */
-    public void showAll(){
+    public String showAll(){
+        String vCommands = "";
         for ( int i=0; i<aValidCommands.length; i++ ) {
-            System.out.print(aValidCommands[i]+" ");
+            vCommands += (aValidCommands[i]+" ");
         }
-        System.out.println();
+        return vCommands;
     }
 } // CommandWords
