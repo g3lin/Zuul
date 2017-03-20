@@ -1,18 +1,26 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Game()
+comment0.text=\n\ constructeur\ par\ defaut\ de\ la\ classe\ Game\n\ Lance\ \u00E0\ la\ cr\u00E9ation\ la\ proc\u00E9dure\ play\ pour\ commencer\ \u00E0\ jouer\n
 comment1.params=
 comment1.target=void\ play()
+comment1.text=\n\ proc\u00E9dure\ principale\ initialisant\ le\ parser\n\ et\ v\u00E9rifiant\ continuellement\ si\ le\ joueur\ veut\ quitter\ le\ jeu.\n\ Affiche\ un\ message\ \u00E0\ la\ sortie\n
 comment2.params=
 comment2.target=void\ createRooms()
+comment2.text=\n\ Proc\u00E9dure\ permettant\ de\ cr\u00E9er\ chaque\ pi\u00E8ce\ du\ jeu\ \n\ Met\ en\ place\ les\ sorties\ des\ salles\ par\ arpport\ aux\ autres\n
 comment3.params=pCommand
 comment3.target=void\ goRoom(Command)
+comment3.text=\n\ procedure\ permettant\ de\ changer\ de\ pi\u00E8ce\ dans\ le\ jeu\n\ @param\ une\ command\n
 comment4.params=
 comment4.target=void\ printWelcome()
+comment4.text=\n\ procedure\ affichant\ via\ S.o.p\ l'intro\ du\ jeu\ ainsi\ que\ la\ localisation\ du\ joueur\n
 comment5.params=
 comment5.target=void\ printHelp()
+comment5.text=\n\ procedure\ affichant\ via\ S.o.p\ le\ message\ d'aide\ si\ le\ joueur\ l'a\ demand\u00E9\n
 comment6.params=pCommand
 comment6.target=boolean\ processCommand(Command)
+comment6.text=\n\ methode\ permettant\ de\ prendre\ en\ charge\ les\ commandes\n\ en\ fonction\ du\ 1er\ mot\ de\ la\ commande,\ va\ voir\ les\ diff\u00E9rentes\ actions\ \u00E0\ effectuer\n\ @param\ une\ command\n\ @return\ le\ fait\ ou\ non\ que\ le\ joueur\ veuille\ quitter\n
 comment7.params=pCommand
 comment7.target=boolean\ quit(Command)
+comment7.text=\n\ verifie\ si\ le\ joueur\ veut\ bien\ quitter\ et\ renvoie\ true\ si\ c'est\ le\ cas\n\ @param\ une\ command\n\ @return\ le\ fait\ ou\ non\ que\ la\ command\ ait\ un\ 2nd\ mot\n
 numComments=8

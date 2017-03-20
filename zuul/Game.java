@@ -5,13 +5,22 @@ public class Game
     private Room aCurrentRoom = null;
     private Parser aParser;
     
+    /**
+     * constructeur par defaut de la classe Game
+     * Lance à la création la procédure play pour commencer à jouer
+     */
+    
     public Game(){
         createRooms();
         this.aParser = new Parser();
         play();
     }
     
-    
+    /**
+     * procédure principale initialisant le parser
+     * et vérifiant continuellement si le joueur veut quitter le jeu.
+     * Affiche un message à la sortie
+     */
     private void play() {
         this.printWelcome();
         boolean vFinished = false;
@@ -23,7 +32,10 @@ public class Game
     }
     
     
-    
+    /**
+     * Procédure permettant de créer chaque pièce du jeu 
+     * Met en place les sorties des salles par arpport aux autres
+     */
     private void createRooms(){
         Room vHall = new Room("Hall d'entrée central du manoir" );
         Room vCouloirD = new Room("Couloir à droite de l'entrée" );
@@ -77,6 +89,10 @@ public class Game
 
     }
     
+    /**
+     * procedure permettant de changer de pièce dans le jeu
+     * @param une command
+     */
     public void goRoom(final Command pCommand) {
        
         if (!pCommand.hasSecondWord()) {
@@ -97,14 +113,18 @@ public class Game
       
     }
     
-    
+    /**
+     * procedure affichant via S.o.p l'intro du jeu ainsi que la localisation du joueur
+     */
     public void printWelcome() {
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         this.aCurrentRoom.printLocationInfo();
     }
     
-    
+    /**
+     * procedure affichant via S.o.p le message d'aide si le joueur l'a demandé
+     */
     public void printHelp(){
         System.out.println("You are lost. You are alone.");
         System.out.println("You wander around at the university.");
@@ -112,7 +132,12 @@ public class Game
         System.out.println("  go quit help");
     }
    
-    
+    /**
+     * methode permettant de prendre en charge les commandes
+     * en fonction du 1er mot de la commande, va voir les différentes actions à effectuer
+     * @param une command
+     * @return le fait ou non que le joueur veuille quitter
+     */
     public boolean processCommand(final Command pCommand){
            
         String vCommandWord = pCommand.getCommandWord();
@@ -140,6 +165,11 @@ public class Game
     }
     
     
+    /**
+     * verifie si le joueur veut bien quitter et renvoie true si c'est le cas
+     * @param une command
+     * @return le fait ou non que la command ait un 2nd mot
+     */
     public boolean quit(final Command pCommand) {
            if (pCommand.hasSecondWord() ){
             System.out.println("quit what ?");
