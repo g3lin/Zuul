@@ -14,7 +14,7 @@
 public class CommandWords
 {
     // tableau constant qui contient tous les mots de commande valides
-    private static final String[] sValidCommands = {
+    private static final String[] aValidCommands = {
         "go", "quit", "help" ,"look", "eat"
     };
 
@@ -34,13 +34,23 @@ public class CommandWords
     public boolean isCommand( final String pString )
     {
         // pour chacune des commandes valides (du tableau constant)
-        for ( int i=0; i<sValidCommands.length; i++ ) {
+        for ( int i=0; i<aValidCommands.length; i++ ) {
             // si elle est egale a pString
-            if ( sValidCommands[i].equals( pString ) )
+            if ( aValidCommands[i].equals( pString ) )
                 return true;
         } // for
         // si nous arrivons la, c'est que la commande
         // n'a pas ete trouvee dans le tableau
         return false;
     } // isCommand()
+    
+    /**
+     * Print all valid commands 
+     */
+    public void showAll(){
+        for ( int i=0; i<aValidCommands.length; i++ ) {
+            System.out.print(aValidCommands[i]+" ");
+        }
+        System.out.println();
+    }
 } // CommandWords

@@ -89,29 +89,7 @@ public class Game
 
     }
     
-    /**
-     * procedure permettant de changer de pièce dans le jeu
-     * @param une command
-     */
-    public void goRoom(final Command pCommand) {
-       
-        if (!pCommand.hasSecondWord()) {
-            System.out.println("go where ?");
-            return;
-        }
-      String vDirection = pCommand.getSecondWord() ;
-        Room vNextRoom = this.aCurrentRoom.getExit(vDirection);
-            if (vNextRoom == null){
-                System.out.print("There is no door !");
-                return ;
-            }
-            else{
-                this.aCurrentRoom=vNextRoom;
-                
-                this.aCurrentRoom.getLongDescription();
-            }
-      
-    }
+    
     
     /**
      * procedure affichant via S.o.p l'intro du jeu ainsi que la localisation du joueur
@@ -122,15 +100,6 @@ public class Game
         this.aCurrentRoom.getLongDescription();
     }
     
-    /**
-     * procedure affichant via S.o.p le message d'aide si le joueur l'a demandé
-     */
-    public void printHelp(){
-        System.out.println("You are lost. You are alone.");
-        System.out.println("You wander around at the university.");
-        System.out.println("Your command words are:");
-        System.out.println("  go quit help");
-    }
    
     /**
      * methode permettant de prendre en charge les commandes
@@ -177,6 +146,29 @@ public class Game
             return false;
     }
     
+    /**
+     * procedure permettant de changer de pièce dans le jeu
+     * @param une command
+     */
+    public void goRoom(final Command pCommand) {
+       
+        if (!pCommand.hasSecondWord()) {
+            System.out.println("go where ?");
+            return;
+        }
+      String vDirection = pCommand.getSecondWord() ;
+        Room vNextRoom = this.aCurrentRoom.getExit(vDirection);
+            if (vNextRoom == null){
+                System.out.print("There is no door !");
+                return ;
+            }
+            else{
+                this.aCurrentRoom=vNextRoom;
+                
+                this.aCurrentRoom.getLongDescription();
+            }
+      
+    }
     
     /**
      * verifie si le joueur veut bien quitter et renvoie true si c'est le cas
@@ -199,5 +191,16 @@ public class Game
         System.out.println ("Vous avez maintenant mangé ");
         System.out.println ("Vous n'avez plus faim du tout ");
      }
+     
+      /**
+     * procedure affichant via S.o.p le message d'aide si le joueur l'a demandé
+     */
+    public void printHelp(){
+        System.out.println("You are lost. You are alone.");
+        System.out.println("You wander around at the university.");
+        System.out.println("Your command words are:");
+        this.aParser.showCommands();
+    }
+   
 
 } // Game
