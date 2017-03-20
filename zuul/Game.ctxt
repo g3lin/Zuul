@@ -23,4 +23,6 @@ comment6.text=\n\ methode\ permettant\ de\ prendre\ en\ charge\ les\ commandes\n
 comment7.params=pCommand
 comment7.target=boolean\ quit(Command)
 comment7.text=\n\ verifie\ si\ le\ joueur\ veut\ bien\ quitter\ et\ renvoie\ true\ si\ c'est\ le\ cas\n\ @param\ une\ command\n\ @return\ le\ fait\ ou\ non\ que\ la\ command\ ait\ un\ 2nd\ mot\n
-numComments=8
+comment8.params=
+comment8.target=void\ look()
+numComments=9

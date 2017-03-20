@@ -148,20 +148,27 @@ public class Game
             }
         
            
-                if (vCommandWord.equals("help")){
+             else if (vCommandWord.equals("help")){
                     printHelp();
                     return false;
             }
         
-               if (vCommandWord.equals("go")){
+             else if (vCommandWord.equals("go")){
                     goRoom(pCommand);
                     return false;
             }
                     
+            else if (pCommand.isUnknown() ) {
+                    System.out.println("I don't know what you mean...");
+                    return false;
+                }
             
-        System.out.println("I don't know what you mean...");
-        return false;
+                else if (vCommandWord.equals("look")){
+                    look();
+                    return false;
+            }
         
+            return false;
     }
     
     
@@ -176,5 +183,9 @@ public class Game
             return false;
         }
         return true;
+    }
+    
+    private void look() {
+        this.aCurrentRoom.getLongDescription() ;
     }
 } // Game
