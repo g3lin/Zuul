@@ -44,7 +44,7 @@ public class Room
         /**
          * affiche le string de la localisation
          */
-        public void printLocationInfo(){
+        public void getLongDescription(){
                 System.out.print("Vous êtes dans ");
                 System.out.println(this.getDescription());
                 System.out.print("Vous pouvez aller vers: ");
