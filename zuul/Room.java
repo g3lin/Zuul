@@ -1,17 +1,22 @@
- import java.util.HashMap;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class Room
 {
        private String aDescription ;
        private HashMap<String,Room> aExits;
+       private String aImageName;
        /**
         * Constructeur mettant en place la description
         * et la hashmap des sorties en attributs
         * @param pDescription la description de la piece
+        * @param pImage le nom de l'image
         */
-       public Room(final String pDescription){
+       public Room(final String pDescription, String pImage){
            this.aDescription=pDescription;
            aExits = new  HashMap<String,Room>();
+           this.aImageName = pImage;
         }
         
         /**
@@ -44,34 +49,28 @@ public class Room
         /**
          * affiche le string de la localisation
          */
-        public void getLongDescription(){
-                System.out.print("Vous êtes dans ");
-                System.out.println(this.getDescription());
-                System.out.print("Vous pouvez aller vers: ");
-            String vExits = "";
-             
-             System.out.println(this.getExitString())  ;
+        public String getLongDescription(){
+               String vDescription = "Vous êtes dans "+ this.getDescription()+"Vous pouvez aller vers: "+this.getExitString()  ;
+               return vDescription;
         }
         
         /**
          * affiche le string des sorties disponibles en sortant de cette salle
          */
         public String getExitString(){
-            String vExits = "";
-            if (this.getExit("north") != null){
-                      vExits += "Nord ";
-                    }
-             if (this.getExit("south") != null){
-               vExits += "Sud ";
-             }
-             if (this.getExit("east") != null){
-               vExits += "Est ";
-             }
-             if (this.getExit("west") != null){
-                vExits += "Ouest ";
-               }
-            
-            
-            return vExits;
+            StringBuilder vExits = new StringBuilder( "Exits:" );
+        for ( String vS : aExits.keySet() )
+            vExits.append( " " + vS );
+        return vExits.toString();
         }
+        
+        
+        
+     /**
+     * Return a string describing the room's image name
+     */
+	public String getImageName()
+	{
+		return aImageName;
+	}
 } // Room
