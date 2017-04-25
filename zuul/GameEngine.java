@@ -70,7 +70,8 @@ public class GameEngine
         
         
         this.aCurrentRoom=vHall;
-        // Nord sud est ouest
+        
+        // SET LES EXITS 
         vHall.setExits("north",vCouloirF);
         vHall.setExits("east",vCouloirD);
         vHall.setExits("west",vCouloirG);
@@ -104,6 +105,13 @@ public class GameEngine
         
         vEscape.setExits("south",vSallePuzzle);
         
+        
+        
+        //DECLARE LES OBJETS DU JEU
+        
+        
+        Item vBague = new Item(15,"une dague rouillée");
+        vHall.setItem(vBague);
         
         
     }
@@ -184,7 +192,7 @@ public class GameEngine
       String vDirection = pCommand.getSecondWord() ;
         Room vNextRoom = this.aCurrentRoom.getExit(vDirection);
             if (vNextRoom == null){
-                aGUI.print("There is no door !");
+                aGUI.println("There is no door !");
                 return ;
             }
             else{
@@ -192,8 +200,9 @@ public class GameEngine
                 
                 this.aGUI.println(this.aCurrentRoom.getLongDescription());
                 
+                
                 if(this.aCurrentRoom.getImageName() != null)
-                this.aGUI.showImage(this.aCurrentRoom.getImageName());
+                {this.aGUI.showImage(this.aCurrentRoom.getImageName());}
             }
       
     }
