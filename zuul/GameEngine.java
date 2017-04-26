@@ -140,7 +140,7 @@ public class GameEngine
         if ( vCommandWord.equals("quit") ){
             if(vCommand.hasSecondWord())
                 aGUI.println("Quit what?");
-            quit();
+            else quit();
         }
 
         else if (vCommandWord.equals("help")){
@@ -169,7 +169,9 @@ public class GameEngine
         }
 
         else if (vCommandWord.equals("back")){
-            back();
+            if(vCommand.hasSecondWord())
+                aGUI.println("Je n'ai n'ai pas compris");
+            else back();
         }
 
         else {
@@ -244,9 +246,9 @@ public class GameEngine
 
     public void back(){
         if (! aRoomS.empty()) {
-        Room vRoomPre = this.aRoomS.pop();
-        goToRoom(vRoomPre);
-    }
-    else this.aGUI.println("Vous ne pouvez pas revenir plus loin");
+            Room vRoomPre = this.aRoomS.pop();
+            goToRoom(vRoomPre);
+        }
+        else this.aGUI.println("Vous ne pouvez pas revenir plus loin");
     }
 } // Game
