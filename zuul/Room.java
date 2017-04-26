@@ -1,5 +1,6 @@
 import java.util.Set;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Iterator;
 
 public class Room
@@ -7,7 +8,7 @@ public class Room
     private String aDescription ;
     private HashMap<String,Room> aExits;
     private String aImageName;
-    private Item aItem;
+    private Map<String, Item> aItems;
 
     /**
      * Constructeur mettant en place la description
@@ -19,7 +20,7 @@ public class Room
         this.aDescription=pDescription;
         aExits = new  HashMap<String,Room>();
         this.aImageName = pImage;
-        aItem = null;
+        aItems = new HashMap<String,Item>();
     }
 
     /**
@@ -54,7 +55,12 @@ public class Room
      */
     public String getLongDescription(){
         String vDescription = "Vous êtes dans "+ this.getDescription()+"\n Vous pouvez aller vers: "+this.getExitString() ;
-        if (this .aItem != null) vDescription += "\n Vous trouvez dans cette salle :"+this.aItem.getDescription();
+        if (! this.aItems.isEmpty() ) {
+            vDescription += "\n Vous trouvez dans cette salle :";
+            for (Item vI : this.aItems.values() ){
+                vDescription += vI.getDescription()+ "   ";
+            }
+        }
         return vDescription;
     }
 
@@ -69,13 +75,13 @@ public class Room
     }
 
     public void setItem(final Item pItem){
-        this.aItem = pItem;
+        this.aItems.put(pItem.getDescription(),pItem);
     }
-    
-    public Item getItem(){
-        return this.aItem;
+
+    public Object[] getItems(){
+        return this.aItems.values().toArray(); 
     }
-        
+
     /**
      * Return a string describing the room's image name
      */

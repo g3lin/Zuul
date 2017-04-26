@@ -111,6 +111,12 @@ public class GameEngine
         
         
         Item vBague = new Item(15,"une dague rouillée");
+        Item vMontre = new Item(150,"une montre rolex");
+        Item vMarteau = new Item(500,"un marteau de bricolage");
+        
+        vCouloirF.setItem(vMontre);
+        vCouloirF.setItem(vMarteau);
+        
         vHall.setItem(vBague);
         
         
