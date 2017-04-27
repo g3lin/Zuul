@@ -1,6 +1,11 @@
 import java.util.HashMap; 
 import java.util.Stack; 
 
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+// import java.io.PrintWriter;
+
 public class GameEngine
 {
     private Room aCurrentRoom = null;
@@ -8,7 +13,8 @@ public class GameEngine
     private HashMap<String,Room> aRooms;
     private UserInterface aGUI;
     private Stack<Room> aRoomS;
-
+    
+    
     /**
      * constructeur par defaut de la classe Game
      * Lance à la création la procédure play pour commencer à jouer
@@ -19,6 +25,8 @@ public class GameEngine
         createRooms();
         this.aParser = new Parser();
         this.aRoomS = new Stack<Room>();
+        
+        
     }
 
     /**
@@ -173,6 +181,12 @@ public class GameEngine
                 aGUI.println("Je n'ai n'ai pas compris");
             else back();
         }
+        
+        else if (vCommandWord.equals("test")){
+            if(vCommand.hasSecondWord())
+                test(vCommand.getSecondWord() );
+            else aGUI.println("Spécifier le fichier de test");
+        }
 
         else {
             aGUI.println("I don't know what you mean...");
@@ -250,5 +264,22 @@ public class GameEngine
             goToRoom(vRoomPre);
         }
         else this.aGUI.println("Vous ne pouvez pas revenir plus loin");
+    }
+    
+    
+    public void test(final String pFile){
+              
+        Scanner vScan;
+        
+        try { 
+            vScan = new Scanner( new File("tests/"+pFile+".txt"));
+            while ( vScan.hasNextLine() ) {
+                String vLigne = vScan.nextLine();
+                interpretCommand(vLigne);
+            } // while
+        } // try
+        catch ( final FileNotFoundException pFNFE ) {
+            this.aGUI.println("fichier non trouvé");
+        } // catch
     }
 } // Game
