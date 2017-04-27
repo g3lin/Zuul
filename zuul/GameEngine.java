@@ -277,6 +277,7 @@ public class GameEngine
                 String vLigne = vScan.nextLine();
                 interpretCommand(vLigne);
             } // while
+            vScan.close();
         } // try
         catch ( final FileNotFoundException pFNFE ) {
             this.aGUI.println("fichier non trouvé");
