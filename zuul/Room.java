@@ -75,7 +75,7 @@ public class Room
     }
 
     public void setItem(final Item pItem){
-        this.aItems.put(pItem.getDescription(),pItem);
+        this.aItems.put(pItem.getName(),pItem);
     }
 
     public Object[] getItems(){

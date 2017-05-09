@@ -8,13 +8,12 @@ import java.io.FileNotFoundException;
 
 public class GameEngine
 {
-    private Room aCurrentRoom = null;
+    
     private Parser aParser;
     private HashMap<String,Room> aRooms;
     private UserInterface aGUI;
-    private Stack<Room> aRoomS;
-    
-    
+    private Player aPlayer;
+
     /**
      * constructeur par defaut de la classe Game
      * Lance à la création la procédure play pour commencer à jouer
@@ -22,13 +21,13 @@ public class GameEngine
 
     public GameEngine(){
         aRooms = new HashMap<String,Room> ();
+        this.aPlayer = new Player();
         createRooms();
         this.aParser = new Parser();
-        this.aRoomS = new Stack<Room>();
         
-        
-    }
 
+    }
+    
     /**
      * met en place l'interface graphique 
      * @param pUserInterface IHM souhaitée
@@ -77,7 +76,7 @@ public class GameEngine
         Room vEscape = new Room("Crypte avec un bateau pour s'echapper","Images/escape.gif"  );
         aRooms.put("Salle finale",vEscape);
 
-        this.aCurrentRoom=vHall;
+        this.aPlayer.setCurrentRoom(vHall);
         // SET LES EXITS 
         vHall.setExits("north",vCouloirF);
         vHall.setExits("east",vCouloirD);
@@ -113,9 +112,9 @@ public class GameEngine
         vEscape.setExits("south",vSallePuzzle);
 
         //DECLARE LES OBJETS DU JEU
-        Item vBague = new Item(15,"une dague rouillée");
-        Item vMontre = new Item(150,"une montre rolex");
-        Item vMarteau = new Item(500,"un marteau de bricolage");
+        Item vBague = new Item(15,"dague","une dague rouillée");
+        Item vMontre = new Item(150,"montre","une montre rolex");
+        Item vMarteau = new Item(500,"Marteau","un marteau de bricolage");
 
         vCouloirF.setItem(vMontre);
         vCouloirF.setItem(vMarteau);
@@ -130,8 +129,8 @@ public class GameEngine
     public void printWelcome() {
         aGUI.println("Welcome to the World of Zuul!");
         aGUI.println("World of Zuul is a new, incredibly boring adventure game.");
-        aGUI.println(this.aCurrentRoom.getLongDescription());
-        aGUI.showImage(aCurrentRoom.getImageName());
+        aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
+        aGUI.showImage(aPlayer.getCurrentRoom().getImageName());
     }
 
     /**
@@ -181,7 +180,7 @@ public class GameEngine
                 aGUI.println("Je n'ai n'ai pas compris");
             else back();
         }
-        
+
         else if (vCommandWord.equals("test")){
             if(vCommand.hasSecondWord())
                 test(vCommand.getSecondWord() );
@@ -205,13 +204,13 @@ public class GameEngine
             return;
         }
         String vDirection = pCommand.getSecondWord() ;
-        Room vNextRoom = this.aCurrentRoom.getExit(vDirection);
+        Room vNextRoom = this.aPlayer.getCurrentRoom().getExit(vDirection);
         if (vNextRoom == null){
             aGUI.println("There is no door !");
             return ;
         }
         else{
-            this.aRoomS.push(this.aCurrentRoom);
+            this.aPlayer.getHistory().push(this.aPlayer.getCurrentRoom());
 
             goToRoom(vNextRoom);
         }
@@ -219,12 +218,12 @@ public class GameEngine
     }
 
     public void goToRoom(final Room pRoom){
-        this.aCurrentRoom=pRoom;
+        this.aPlayer.setCurrentRoom(pRoom);
 
-        this.aGUI.println(this.aCurrentRoom.getLongDescription());
+        this.aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
 
-        if(this.aCurrentRoom.getImageName() != null)
-        {this.aGUI.showImage(this.aCurrentRoom.getImageName());}
+        if(this.aPlayer.getCurrentRoom().getImageName() != null)
+        {this.aGUI.showImage(this.aPlayer.getCurrentRoom().getImageName());}
     }
 
     /**
@@ -239,7 +238,7 @@ public class GameEngine
      * regarde autour
      */
     private void look() {
-        aGUI.println(this.aCurrentRoom.getLongDescription()) ;
+        aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription()) ;
     }
 
     /**
@@ -259,18 +258,15 @@ public class GameEngine
     }
 
     public void back(){
-        if (! aRoomS.empty()) {
-            Room vRoomPre = this.aRoomS.pop();
+        if (! this.aPlayer.getHistory().empty()) {
+            Room vRoomPre = this.aPlayer.getHistory().pop();
             goToRoom(vRoomPre);
         }
         else this.aGUI.println("Vous ne pouvez pas revenir plus loin");
     }
-    
-    
+
     public void test(final String pFile){
-              
         Scanner vScan;
-        
         try { 
             vScan = new Scanner( new File("tests/"+pFile+".txt"));
             while ( vScan.hasNextLine() ) {

@@ -9,15 +9,17 @@ public class Item
 {
     // instance variables - replace the example below with your own
     private int aPoids;
+    private String aName;
     private String aDescription;
 
     /**
      * default constructor for objects of class Item
      */
-    public Item(final int pPoids, final String pDescription)
+    public Item(final int pPoids, final String pName, final String pDescription)
     {
         // initialise instance variables
         this.aPoids = pPoids;
+        this.aName = pName;
         this.aDescription = pDescription;
     } 
 
@@ -30,6 +32,15 @@ public class Item
         return this.aPoids;
     } // sampleMethod(.)
 
+    /**
+     * accesseur du nom
+     * @return nom
+     */
+    public String getName()
+    {
+        return this.aName;
+    } // sampleMethod(.)
+    
     /**
      * accesseur e la description
      * @return description
