@@ -1,11 +1,11 @@
 #BlueJ class context
 comment0.params=
 comment0.target=CommandWords()
-comment0.text=\n\ Constructeur\ par\ defaut\n
+comment0.text=\r\n\ Constructeur\ par\ defaut\r\n
 comment1.params=pString
 comment1.target=boolean\ isCommand(java.lang.String)
-comment1.text=\n\ Verifie\ si\ une\ String\ donnee\ fait\ partie\ des\ commandes\ valides.\ \n\ @param\ pString\ la\ String\ a\ tester\n\ @return\ true\ si\ pString\ est\ une\ comande\ valide,\ false\ sinon\n
+comment1.text=\r\n\ Verifie\ si\ une\ String\ donnee\ fait\ partie\ des\ commandes\ valides.\ \r\n\ @param\ pString\ la\ String\ a\ tester\r\n\ @return\ true\ si\ pString\ est\ une\ comande\ valide,\ false\ sinon\r\n
 comment2.params=
 comment2.target=java.lang.String\ showAll()
-comment2.text=\n\ Print\ all\ valid\ commands\ \n
+comment2.text=\r\n\ Print\ all\ valid\ commands\ \r\n
 numComments=3
