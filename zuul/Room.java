@@ -81,6 +81,12 @@ public class Room
     public Object[] getItems(){
         return this.aItems.values().toArray(); 
     }
+    
+    public Item takeItem(final String vItemString){
+        return this.aItems.remove(vItemString);
+    }
+    
+    
 
     /**
      * Return a string describing the room's image name

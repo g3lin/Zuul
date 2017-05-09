@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 public class GameEngine
 {
-    
+
     private Parser aParser;
     private HashMap<String,Room> aRooms;
     private UserInterface aGUI;
@@ -24,10 +24,9 @@ public class GameEngine
         this.aPlayer = new Player();
         createRooms();
         this.aParser = new Parser();
-        
 
     }
-    
+
     /**
      * met en place l'interface graphique 
      * @param pUserInterface IHM souhaitée
@@ -187,6 +186,18 @@ public class GameEngine
             else aGUI.println("Spécifier le fichier de test");
         }
 
+        else if (vCommandWord.equals("take")){
+            if(vCommand.hasSecondWord())
+                take(vCommand.getSecondWord() );
+            else aGUI.println("Prendre quoi ?");
+        }
+
+        else if (vCommandWord.equals("drop")){
+            if(vCommand.hasSecondWord())
+                drop(vCommand.getSecondWord() );
+            else aGUI.println("Lacher quoi ?");
+        }
+
         else {
             aGUI.println("I don't know what you mean...");
 
@@ -278,5 +289,26 @@ public class GameEngine
         catch ( final FileNotFoundException pFNFE ) {
             this.aGUI.println("fichier non trouvé");
         } // catch
+    }
+
+    public void take(final String vItemString){
+        Item vItem = this.aPlayer.getCurrentRoom().takeItem(vItemString);
+        if(vItem != null){
+            this.aPlayer.setItem(vItem);
+        }
+        else{
+            this.aGUI.println("objet non trouvé");
+        }
+    }
+
+    public void drop(final String vItemString){
+
+        Item vItem = this.aPlayer.takeItem(vItemString);
+        if (vItem != null){
+            this.aPlayer.getCurrentRoom().setItem(vItem);
+        }
+        else{
+            this.aGUI.println("objet non trouvé");
+        }
     }
 } // Game
