@@ -8,7 +8,7 @@ public class Room
     private String aDescription ;
     private HashMap<String,Room> aExits;
     private String aImageName;
-    private Map<String, Item> aItems;
+    private ItemList aItems;
 
     /**
      * Constructeur mettant en place la description
@@ -18,9 +18,9 @@ public class Room
      */
     public Room(final String pDescription, String pImage){
         this.aDescription=pDescription;
-        aExits = new  HashMap<String,Room>();
+        this.aExits = new  HashMap<String,Room>();
         this.aImageName = pImage;
-        aItems = new HashMap<String,Item>();
+        this.aItems= new ItemList();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Room
         String vDescription = "Vous êtes dans "+ this.getDescription()+"\n Vous pouvez aller vers: "+this.getExitString() ;
         if (! this.aItems.isEmpty() ) {
             vDescription += "\n Vous trouvez dans cette salle :";
-            for (Item vI : this.aItems.values() ){
+            for (Item vI : this.aItems.getValues() ){
                 vDescription += vI.getDescription()+ "   ";
             }
         }
@@ -74,16 +74,8 @@ public class Room
         return vExits.toString();
     }
 
-    public void setItem(final Item pItem){
-        this.aItems.put(pItem.getName(),pItem);
-    }
-
-    public Object[] getItems(){
-        return this.aItems.values().toArray(); 
-    }
-    
-    public Item takeItem(final String vItemString){
-        return this.aItems.remove(vItemString);
+    public ItemList getItems(){
+        return this.aItems;
     }
     
     

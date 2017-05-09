@@ -115,10 +115,10 @@ public class GameEngine
         Item vMontre = new Item(150,"montre","une montre rolex");
         Item vMarteau = new Item(500,"Marteau","un marteau de bricolage");
 
-        vCouloirF.setItem(vMontre);
-        vCouloirF.setItem(vMarteau);
+        vCouloirF.getItems().setItem(vMontre);
+        vCouloirF.getItems().setItem(vMarteau);
 
-        vHall.setItem(vBague);
+        vHall.getItems().setItem(vBague);
 
     }
 
@@ -292,9 +292,9 @@ public class GameEngine
     }
 
     public void take(final String vItemString){
-        Item vItem = this.aPlayer.getCurrentRoom().takeItem(vItemString);
+        Item vItem = this.aPlayer.getCurrentRoom().getItems().takeItem(vItemString);
         if(vItem != null){
-            this.aPlayer.setItem(vItem);
+            this.aPlayer.getItems().setItem(vItem);
         }
         else{
             this.aGUI.println("objet non trouvé");
@@ -303,9 +303,9 @@ public class GameEngine
 
     public void drop(final String vItemString){
 
-        Item vItem = this.aPlayer.takeItem(vItemString);
+        Item vItem = this.aPlayer.getItems().takeItem(vItemString);
         if (vItem != null){
-            this.aPlayer.getCurrentRoom().setItem(vItem);
+            this.aPlayer.getCurrentRoom().getItems().setItem(vItem);
         }
         else{
             this.aGUI.println("objet non trouvé");
