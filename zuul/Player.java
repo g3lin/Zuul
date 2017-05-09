@@ -14,6 +14,8 @@ public class Player
     private Room aCurrentRoom;
     private Stack<Room> aHistory;
     private ItemList aItems;
+    public int aPoids;
+    public int aPoidsMax;
 
     /**
      * Constructor for objects of class Player
@@ -23,6 +25,8 @@ public class Player
         this.aHistory = new Stack<Room>();
         this.aCurrentRoom = null;
         this.aItems= new ItemList();
+        this.aPoids = 0;
+        this.aPoidsMax = 1000;
     }
 
     /**
@@ -32,18 +36,33 @@ public class Player
     {
         this.aCurrentRoom = pRoom;
     }
-    
+
     public Room getCurrentRoom(){
         return this.aCurrentRoom;
     }
-    
+
     public Stack<Room> getHistory(){
         return this.aHistory;
     }
-    
+
     public ItemList getItems(){
         return this.aItems;
     }
+
+    public int getPoids(){
+        return this.aPoids;
+    }
+
+    public int getPoidsMax(){
+        return this.aPoidsMax;
+    }
     
+    public void setPoids(final int pPoids){
+        this.aPoids = pPoids;
+    }
+    
+    public void setPoidsMax(final int pPoids){
+        this.aPoidsMax = pPoids;
+    }
     
 }

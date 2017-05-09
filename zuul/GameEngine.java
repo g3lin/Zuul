@@ -292,9 +292,19 @@ public class GameEngine
     }
 
     public void take(final String vItemString){
+
         Item vItem = this.aPlayer.getCurrentRoom().getItems().takeItem(vItemString);
-        if(vItem != null){
-            this.aPlayer.getItems().setItem(vItem);
+        if(vItem != null ){
+            if(this.aPlayer.getPoids() + vItem.getPoids() <= this.aPlayer.getPoidsMax()){
+                this.aPlayer.getItems().setItem(vItem);
+                this.aPlayer.setPoids( this.aPlayer.getPoids() + vItem.getPoids() );
+            }
+            else  {
+                this.aGUI.println("Cet objet est trop lourd pour etre transporté");
+                this.aPlayer.getCurrentRoom().getItems().setItem(vItem);                
+            }
+            
+            
         }
         else{
             this.aGUI.println("objet non trouvé");
@@ -304,11 +314,14 @@ public class GameEngine
     public void drop(final String vItemString){
 
         Item vItem = this.aPlayer.getItems().takeItem(vItemString);
-        if (vItem != null){
+        if (vItem != null ){
             this.aPlayer.getCurrentRoom().getItems().setItem(vItem);
+            this.aPlayer.setPoids( this.aPlayer.getPoids() - vItem.getPoids() );
         }
-        else{
+
+        else {
             this.aGUI.println("objet non trouvé");
         }
+
     }
 } // Game
