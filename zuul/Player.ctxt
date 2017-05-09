@@ -19,4 +19,6 @@ comment7.params=pPoids
 comment7.target=void\ setPoids(int)
 comment8.params=pPoids
 comment8.target=void\ setPoidsMax(int)
-numComments=9
+comment9.params=
+comment9.target=java.lang.String\ getInventory()
+numComments=10

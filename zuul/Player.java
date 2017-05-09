@@ -65,4 +65,16 @@ public class Player
         this.aPoidsMax = pPoids;
     }
     
+    public String getInventory(){
+        String vString = "";
+        if (! this.aItems.isEmpty() ) {
+            vString +=  "Votre inventaire contient :"+this.aItems.inventory();
+        }
+        else {
+            vString += "Votre inventaire est vide";
+        }
+        vString += "\n Le poids de votre equipement est de : "+getPoids()+"g";
+        return vString;
+    }
+    
 }

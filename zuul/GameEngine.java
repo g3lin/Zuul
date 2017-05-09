@@ -198,12 +198,18 @@ public class GameEngine
             else aGUI.println("Lacher quoi ?");
         }
 
+        else if (vCommandWord.equals("inventaire")){
+            if(vCommand.hasSecondWord())
+                aGUI.println("Je n'ai n'ai pas compris");
+            else inventaire();
+        }
+
         else {
             aGUI.println("I don't know what you mean...");
 
         }
-    }
 
+    }
     /**
      * procedure permettant de changer de pièce dans le jeu
      * @param pCommand une command
@@ -303,8 +309,7 @@ public class GameEngine
                 this.aGUI.println("Cet objet est trop lourd pour etre transporté");
                 this.aPlayer.getCurrentRoom().getItems().setItem(vItem);                
             }
-            
-            
+
         }
         else{
             this.aGUI.println("objet non trouvé");
@@ -323,5 +328,9 @@ public class GameEngine
             this.aGUI.println("objet non trouvé");
         }
 
+    }
+
+    public void inventaire(){
+        this.aGUI.println(this.aPlayer.getInventory());
     }
 } // Game

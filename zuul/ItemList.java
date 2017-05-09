@@ -25,20 +25,26 @@ public class ItemList
     public boolean isEmpty(){
         return this.aItems.isEmpty();
     }
-    
+
     public Collection<Item> getValues(){
         return this.aItems.values();
     }
-    
+
     public void setItem(final Item pItem){
         this.aItems.put(pItem.getName(),pItem);
     }
 
-    public Object[] getItems(){
-        return this.aItems.values().toArray(); 
-    }
-    
     public Item takeItem(final String vItemString){
         return this.aItems.remove(vItemString);
+    }
+
+    public String inventory(){
+        String vString = "";
+        if (! this.aItems.isEmpty() ){
+            for (Item vI : this.aItems.values().toArray(new Item[this.aItems.size()])){
+                vString += vI.getDescription()+ "   ";
+            }
+        }
+        return vString;
     }
 } // ItemList

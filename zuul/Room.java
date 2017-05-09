@@ -56,10 +56,7 @@ public class Room
     public String getLongDescription(){
         String vDescription = "Vous êtes dans "+ this.getDescription()+"\n Vous pouvez aller vers: "+this.getExitString() ;
         if (! this.aItems.isEmpty() ) {
-            vDescription += "\n Vous trouvez dans cette salle :";
-            for (Item vI : this.aItems.getValues() ){
-                vDescription += vI.getDescription()+ "   ";
-            }
+            vDescription += "\n Vous trouvez dans cette salle :"+this.aItems.inventory();
         }
         return vDescription;
     }
@@ -77,8 +74,6 @@ public class Room
     public ItemList getItems(){
         return this.aItems;
     }
-    
-    
 
     /**
      * Return a string describing the room's image name
