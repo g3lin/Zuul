@@ -10,9 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.awt.Dimension;
-import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import java.io.*;
+import javax.imageio.ImageIO;
 
 // import java.awt.image.*;
 
@@ -29,9 +33,10 @@ public class UserInterface implements ActionListener
     private JFrame     aMyFrame;
     private JTextField aEntryField;
     private JTextArea  aLog;
-    private JLabel     aImage;
+    private CustomPanel aUI;
     private JButton    aButton1;
     private JButton    aButton2;
+    private JButton    aButton3;
     /**
      * Construct a UserInterface. As a parameter, a Game Engine
      * (an object processing and executing the game commands) is
@@ -67,14 +72,13 @@ public class UserInterface implements ActionListener
      */
     public void showImage( final String pImageName )
     {
-        URL vImageURL = this.getClass().getClassLoader().getResource( pImageName );
-        if ( vImageURL == null )
-            System.out.println( "image not found" );
-        else {
-            ImageIcon vIcon = new ImageIcon( vImageURL );
-            this.aImage.setIcon( vIcon );
-            this.aMyFrame.pack();
+        Image vImage = null;
+        try {
+            vImage = ImageIO.read(new File(pImageName));
+        } catch (IOException e) {
+            
         }
+        this.aUI.setBGImage(vImage);
     } // showImage(.)
 
     /**
@@ -93,37 +97,58 @@ public class UserInterface implements ActionListener
     private void createGUI()
     {
         this.aMyFrame = new JFrame( "Le Manoir de WanderStock" );
+        ImageIcon img = new ImageIcon("Images/icon.png");
+        this.aMyFrame.setIconImage(img.getImage());
         this.aEntryField = new JTextField( 34 );
+        this.aEntryField.setMaximumSize(new Dimension(1000,50));
 
         this.aLog = new JTextArea();
         this.aLog.setEditable( false );
         JScrollPane vListScroller = new JScrollPane( this.aLog );
         vListScroller.setPreferredSize( new Dimension(200, 200) );
-        vListScroller.setMinimumSize( new Dimension(100,100) );
+        vListScroller.setMinimumSize( new Dimension(100,50) );
 
         JPanel vPanel = new JPanel();
-        this.aImage = new JLabel();
+        vPanel.setLayout( new BoxLayout(vPanel, BoxLayout.PAGE_AXIS) );
+        
+        
+        // PLACEMENT DE L'UI PRINCIPALE
+        this.aUI = new CustomPanel();
+        this.aUI.setPreferredSize( new Dimension(100,100) );
+        vPanel.add( this.aUI);
+        
+        
+        // PLACEMENT DES BOUTONS
+        JPanel vButtons = new JPanel();
+        this.aButton1 = new JButton("eat");
+        vButtons.add( this.aButton1);
+        this.aButton1.addActionListener(this);
 
-        vPanel.setLayout( new BorderLayout() );
-        vPanel.add( this.aImage, BorderLayout.NORTH );
-        vPanel.add( vListScroller, BorderLayout.CENTER );
-        vPanel.add( this.aEntryField, BorderLayout.SOUTH );
+        this.aButton2 = new JButton("look");
+        vButtons.add( this.aButton2);
+        this.aButton2.addActionListener(this);
 
-        this.aMyFrame.getContentPane().add( vPanel, BorderLayout.CENTER );
+        this.aButton3 = new JButton("back");
+        vButtons.add( this.aButton3);
+        this.aButton3.addActionListener(this);
+        
+        vButtons.setMaximumSize(vButtons.getPreferredSize());
+        vPanel.add( vButtons);
+
+        //PLACEMENT DE LA ZONE DE TEXTE
+        vPanel.add( vListScroller);
+
+        // PLACEMENT DE LA ZONE D'ENTRÉE TEXTE
+        vPanel.add( this.aEntryField);
+
+        // INITIALISATION DE LA FENETRE
+        this.aMyFrame.getContentPane().add( vPanel);
 
         // add some event listeners to some components
-        
-         this.aButton1 = new JButton("eat");
-        vPanel.add( this.aButton1,(BorderLayout.EAST));
-        this.aButton1.addActionListener(this);
-        
-        this.aButton2 = new JButton("look");
-        vPanel.add( this.aButton2,(BorderLayout.WEST));
-        this.aButton2.addActionListener(this);
-        
+
         this.aMyFrame.addWindowListener( new WindowAdapter() {
-            public void windowClosing(WindowEvent e) { System.exit(0); }
-        } );
+                public void windowClosing(WindowEvent e) { System.exit(0); }
+            } );
 
         this.aEntryField.addActionListener( this );
 
@@ -137,21 +162,21 @@ public class UserInterface implements ActionListener
      */
     public void actionPerformed( final ActionEvent pEvent ) 
     {
-       
-            if (pEvent.getSource() == aEntryField){
+
+        if (pEvent.getSource() == aEntryField){
             this.processCommand();
         }
-        
-         else if (pEvent.getSource() == (aButton1 )){
+
+        else if (pEvent.getSource() == (aButton1 )){
             String vCommand = pEvent.getActionCommand();
             this.aEngine.interpretCommand( vCommand );
         }
-        
+
         else if (pEvent.getSource() == (aButton2 )){
             String vCommand = pEvent.getActionCommand();
             this.aEngine.interpretCommand( vCommand );
         }
-    
+
     } // actionPerformed(.)
 
     /**

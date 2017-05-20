@@ -42,37 +42,37 @@ public class GameEngine
      * Met en place les sorties des salles par arpport aux autres
      */
     private void createRooms(){
-        Room vHall = new Room("Hall d'entrée central du manoir" ,"Images/hall.gif");
+        Room vHall = new Room("Hall d'entrée central du manoir" ,"Images/hall.png");
         aRooms.put("Hall",vHall);
 
-        Room vCouloirD = new Room("Couloir à droite de l'entrée","Images/couloirD.gif" );
+        Room vCouloirD = new Room("Couloir à droite de l'entrée","Images/couloirD.png" );
         aRooms.put("Couloir droite",vCouloirD);
 
-        Room vCouloirG = new Room("Couloir à Gauche de l'entrée" ,"Images/couloirG.gif");
+        Room vCouloirG = new Room("Couloir à Gauche de l'entrée" ,"Images/couloirG.png");
         aRooms.put("Couloir Gauche",vCouloirG);
 
-        Room vCouloirF = new Room("Couloir en face de l'entrée", "Images/couloirF.gif" );
+        Room vCouloirF = new Room("Couloir en face de l'entrée", "Images/couloirF.png" );
         aRooms.put("Couloir face",vCouloirF);
 
-        Room vBibliotheque = new Room("Grande bibliothèque","Images/bibliotheque.gif" );
+        Room vBibliotheque = new Room("Grande bibliothèque","Images/bibliotheque.png" );
         aRooms.put("Bibliotheque",vBibliotheque);
 
-        Room vChambreDAmis = new Room("Chambre d'amis" ,"Images/chambreAmis.gif");
+        Room vChambreDAmis = new Room("Chambre d'amis" ,"Images/chambreAmis.png");
         aRooms.put("Chambre d'amis",vChambreDAmis);
 
-        Room vAntichambreDAmis = new Room("Antihambre de la chambre d'amis" ,"Images/antichambreAmis.gif");
+        Room vAntichambreDAmis = new Room("Antihambre de la chambre d'amis" ,"Images/antichambreAmis.png");
         aRooms.put("Antichambre d'amis",vAntichambreDAmis);
 
-        Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.gif");
+        Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.png");
         aRooms.put("Salle du puzzle",vSallePuzzle);
 
-        Room vChambrePrincipale = new Room("Chambre du maitre de maison","Images/chambrePrincipale.gif" );
+        Room vChambrePrincipale = new Room("Chambre du maitre de maison","Images/chambrePrincipale.png" );
         aRooms.put("Chambre Principale",vChambrePrincipale);
 
-        Room vSalleEquipement = new Room("Salle secrete de l'équipement","Images/salleEquipement.gif" );
+        Room vSalleEquipement = new Room("Salle secrete de l'équipement","Images/salleEquipement.png" );
         aRooms.put("Salle Equipement",vSalleEquipement);
 
-        Room vEscape = new Room("Crypte avec un bateau pour s'echapper","Images/escape.gif"  );
+        Room vEscape = new Room("Crypte avec un bateau pour s'echapper","Images/escape.png"  );
         aRooms.put("Salle finale",vEscape);
 
         this.aPlayer.setCurrentRoom(vHall);
