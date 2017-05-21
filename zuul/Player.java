@@ -16,6 +16,7 @@ public class Player
     private ItemList aItems;
     public int aPoids;
     public int aPoidsMax;
+    private Sprite aSprite;
 
     /**
      * Constructor for objects of class Player
@@ -27,6 +28,9 @@ public class Player
         this.aItems= new ItemList();
         this.aPoids = 0;
         this.aPoidsMax = 1000;
+        this.aSprite = new Sprite( "player", "Images/character.png" , 50,50, 33);
+        this.aSprite.rendVisible(); 
+
     }
 
     /**
@@ -35,6 +39,10 @@ public class Player
     public void setCurrentRoom(final Room pRoom)
     {
         this.aCurrentRoom = pRoom;
+    }
+
+    public Sprite getSprite(){
+        return this.aSprite;
     }
 
     public Room getCurrentRoom(){
@@ -56,15 +64,15 @@ public class Player
     public int getPoidsMax(){
         return this.aPoidsMax;
     }
-    
+
     public void setPoids(final int pPoids){
         this.aPoids = pPoids;
     }
-    
+
     public void setPoidsMax(final int pPoids){
         this.aPoidsMax = pPoids;
     }
-    
+
     public String getInventory(){
         String vString = "";
         if (! this.aItems.isEmpty() ) {
@@ -76,5 +84,5 @@ public class Player
         vString += "\n Le poids de votre equipement est de : "+getPoids()+"g";
         return vString;
     }
-    
+
 }

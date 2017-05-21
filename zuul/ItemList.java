@@ -47,4 +47,8 @@ public class ItemList
         }
         return vString;
     }
+    
+    public Item[] getItemArray(){
+            return this.aItems.values().toArray(new Item[this.aItems.size()]);
+    }
 } // ItemList

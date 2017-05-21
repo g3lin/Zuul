@@ -1,4 +1,5 @@
-
+import java.io.*;
+import javax.imageio.ImageIO;
 /**
  * Write a description of class Item here.
  * 
@@ -11,6 +12,7 @@ public class Item
     private int aPoids;
     private String aName;
     private String aDescription;
+    private Sprite aSprite;
 
     /**
      * default constructor for objects of class Item
@@ -21,6 +23,14 @@ public class Item
         this.aPoids = pPoids;
         this.aName = pName;
         this.aDescription = pDescription;
+        String vS = "";
+        try {
+            ImageIO.read(new File("Images/"+pName+".png"));
+            vS = pName;
+        } catch (IOException e) {
+            vS = "item";
+        }
+        this.aSprite = new Sprite( pName, "Images/"+vS+".png" , 50,50, 10);
     } 
 
     /**
@@ -49,4 +59,8 @@ public class Item
     {
         return this.aDescription;
     } // sampleMethod(.)
+    
+    public Sprite getSprite(){
+        return this.aSprite;
+    }
 } // Item

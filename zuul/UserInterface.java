@@ -1,6 +1,16 @@
+/**
+ * @author pour la transformation en jtextPane du champ de texte 
+ * @author pour une meilleure flexibilité du chanp de texte
+ * @author https://stackoverflow.com/questions/4059198/jtextpane-appending-a-new-string
+ * 
+ * @author importation d'une police custom
+ * @author https://stackoverflow.com/questions/24800886/how-to-import-a-custom-java-awt-font-from-a-font-family-with-multiple-ttf-files
+ * 
+ */
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -17,6 +27,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.io.*;
 import javax.imageio.ImageIO;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 // import java.awt.image.*;
 
@@ -32,7 +44,7 @@ public class UserInterface implements ActionListener
     private GameEngine aEngine;
     private JFrame     aMyFrame;
     private JTextField aEntryField;
-    private JTextArea  aLog;
+    private JTextPane  aLog;
     private CustomPanel aUI;
     private JButton    aButton1;
     private JButton    aButton2;
@@ -55,7 +67,10 @@ public class UserInterface implements ActionListener
      */
     public void print( final String pText )
     {
-        this.aLog.append( pText );
+        try{
+            this.aLog.getDocument().insertString(this.aLog.getDocument().getLength(),pText, null );
+        }
+        catch(javax.swing.text.BadLocationException exc){System.out.print("bug du texte");}
         this.aLog.setCaretPosition( this.aLog.getDocument().getLength() );
     } // print(.)
 
@@ -76,7 +91,7 @@ public class UserInterface implements ActionListener
         try {
             vImage = ImageIO.read(new File(pImageName));
         } catch (IOException e) {
-            
+
         }
         this.aUI.setBGImage(vImage);
     } // showImage(.)
@@ -102,7 +117,7 @@ public class UserInterface implements ActionListener
         this.aEntryField = new JTextField( 34 );
         this.aEntryField.setMaximumSize(new Dimension(1000,50));
 
-        this.aLog = new JTextArea();
+        this.aLog = new JTextPane();
         this.aLog.setEditable( false );
         JScrollPane vListScroller = new JScrollPane( this.aLog );
         vListScroller.setPreferredSize( new Dimension(200, 200) );
@@ -110,14 +125,12 @@ public class UserInterface implements ActionListener
 
         JPanel vPanel = new JPanel();
         vPanel.setLayout( new BoxLayout(vPanel, BoxLayout.PAGE_AXIS) );
-        
-        
+
         // PLACEMENT DE L'UI PRINCIPALE
-        this.aUI = new CustomPanel();
+        this.aUI = new CustomPanel(this.aEngine);
         this.aUI.setPreferredSize( new Dimension(100,100) );
         vPanel.add( this.aUI);
-        
-        
+
         // PLACEMENT DES BOUTONS
         JPanel vButtons = new JPanel();
         this.aButton1 = new JButton("eat");
@@ -131,11 +144,19 @@ public class UserInterface implements ActionListener
         this.aButton3 = new JButton("back");
         vButtons.add( this.aButton3);
         this.aButton3.addActionListener(this);
-        
+
         vButtons.setMaximumSize(vButtons.getPreferredSize());
         vPanel.add( vButtons);
 
         //PLACEMENT DE LA ZONE DE TEXTE
+        try{
+            Font vFont = Font.createFont(Font.TRUETYPE_FONT, new File("font.ttf"));
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(vFont);
+            Font vPS2PFont = new Font("Press Start 2P", Font.PLAIN, 15);
+            this.aLog.setFont(vPS2PFont);
+        }
+        catch(Exception e){}
+        
         vPanel.add( vListScroller);
 
         // PLACEMENT DE LA ZONE D'ENTRÉE TEXTE
@@ -154,8 +175,22 @@ public class UserInterface implements ActionListener
 
         this.aMyFrame.pack();
         this.aMyFrame.setVisible( true );
+        this.aMyFrame.setSize( new Dimension(800,700) );
+        this.aUI.revalidate(); //requis pour eviter des bugs d'affichage
         this.aEntryField.requestFocus();
+        setSprites();
     } // createGUI()
+
+    public void setSprites(){
+        this.aUI.resetSprites();
+        Room vRoom = this.aEngine.getPlayer().getCurrentRoom();
+        for (Item vI :vRoom.getItems().getItemArray()){
+            Sprite vS = vI.getSprite();
+            this.aUI.addSprite(vS);
+        }
+        this.aUI.setAsPlayerSprite(this.aEngine.getPlayer().getSprite());
+
+    }
 
     /**
      * Actionlistener interface for entry textfield.
@@ -190,4 +225,5 @@ public class UserInterface implements ActionListener
 
         this.aEngine.interpretCommand( vInput );
     } // processCommand()
+
 } // UserInterface 

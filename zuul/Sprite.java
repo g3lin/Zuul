@@ -20,8 +20,8 @@ public class Sprite
     private int     aYPosition;
     private int     aHeight;
     private boolean aEstVisible;
-
-    private CustomPanel aPanel;
+    private int     aAdjHeight;
+    private int     aAdjWidth;
 
     /**
      * Cree un nouveau cercle avec les position et couleur par defaut.
@@ -40,12 +40,12 @@ public class Sprite
         try {
             this.aImage = ImageIO.read(new File(pImageURI));
         } catch (IOException e) {
+            System.out.print("probleme de chargement de l'image");
         }
 
         this.aXPosition= pcoordX;
         this.aYPosition= pcoordY;
         this.aHeight=   pHeight;
-        this.aPanel = null;
         this.rendVisible();
     } // Cercle()
 
@@ -55,7 +55,6 @@ public class Sprite
     public void rendVisible()
     {
         this.aEstVisible= true;
-        this.dessine();
     } // rendVisible()
 
     /**
@@ -93,7 +92,6 @@ public class Sprite
     public void depHorizontal( final int pDistance )
     {
         this.aXPosition= this.aXPosition + pDistance;
-        this.dessine();
     } // depHorizontal()
 
     /**
@@ -103,7 +101,6 @@ public class Sprite
     public void depVertical( final int pDistance )
     {
         this.aYPosition= this.aYPosition + pDistance;
-        this.dessine();
     } // depVertical()
 
     /**
@@ -120,12 +117,13 @@ public class Sprite
         else {
             vDelta=    1;
         } // if
+
         while (this.aXPosition != vXIni +pDistance) {
             this.depHorizontal( vDelta); 
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
-                
+
             }
 
         }
@@ -151,22 +149,10 @@ public class Sprite
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
-                
+
             }
         }// deplacement rapide pour l'instant
     } // depLentVertical()
-
-    public void setPanel(final CustomPanel pPanel){
-        this.aPanel = pPanel;
-    }
-
-    /**
-     * Dessine sur l'ecran le cercle avec ses specifications courantes
-     */
-    private void dessine()
-    {
-        //         Game.getPanel.repaint();
-    } // dessine()
 
     /**
      * 
@@ -192,6 +178,44 @@ public class Sprite
     public int getHeight()
     {
         return this.aHeight;
+
+    } //getposition
+    
+    
+    
+    /**
+     * 
+     */
+    public void setAdjustedHeight(final int pH)
+    {
+        this.aAdjHeight = pH;
+
+    }
+    
+    /**
+     * 
+     */
+    public void setAdjustedWidth(final int pW)
+    {
+        this.aAdjHeight = pW;
+
+    }
+    
+    /**
+     * 
+     */
+    public int getAdjustedHeight()
+    {
+        return this.aAdjHeight;
+
+    }
+    
+    /**
+     * 
+     */
+    public int getAdjustedWidth()
+    {
+        return this.aAdjWidth;
 
     } //getposition
 

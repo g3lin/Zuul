@@ -121,7 +121,6 @@ public class GameEngine
         vHall.getItems().setItem(vBague);
 
     }
-
     /**
      * procedure affichant via S.o.p l'intro du jeu ainsi que la localisation du joueur
      */
@@ -130,6 +129,10 @@ public class GameEngine
         aGUI.println("World of Zuul is a new, incredibly boring adventure game.");
         aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
         aGUI.showImage(aPlayer.getCurrentRoom().getImageName());
+    }
+
+    public Player getPlayer(){
+        return this.aPlayer;
     }
 
     /**
@@ -210,6 +213,7 @@ public class GameEngine
         }
 
     }
+
     /**
      * procedure permettant de changer de pièce dans le jeu
      * @param pCommand une command
@@ -236,11 +240,10 @@ public class GameEngine
 
     public void goToRoom(final Room pRoom){
         this.aPlayer.setCurrentRoom(pRoom);
-
         this.aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
-
         if(this.aPlayer.getCurrentRoom().getImageName() != null)
         {this.aGUI.showImage(this.aPlayer.getCurrentRoom().getImageName());}
+        this.aGUI.setSprites();
     }
 
     /**
@@ -314,6 +317,7 @@ public class GameEngine
         else{
             this.aGUI.println("objet non trouvé");
         }
+        this.aGUI.setSprites();
     }
 
     public void drop(final String vItemString){
@@ -327,7 +331,7 @@ public class GameEngine
         else {
             this.aGUI.println("objet non trouvé");
         }
-
+        this.aGUI.setSprites();
     }
 
     public void inventaire(){
