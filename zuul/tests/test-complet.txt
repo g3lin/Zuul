@@ -1,18 +1,35 @@
 help
+
 eat
+
 look
+
 go north
+
 go north
+
 back
+
 go west
+
 go west
+
 go north
+
+use cookie
 back
+
 back
+
 back
+
 go east
-go east 
+
+go east
+
 go north
+
 go north
+
 go north
 
