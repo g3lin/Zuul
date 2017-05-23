@@ -72,8 +72,7 @@ public class GameEngine
         Room vChambreDAmis = new Room("Chambre d'amis" ,"Images/chambreAmis.png");
         aRooms.put("Chambre d'amis",vChambreDAmis);
 
-        Room vAntichambreDAmis = new Room("Antihambre de la chambre d'amis" ,"Images/antichambreAmis.png");
-        aRooms.put("Antichambre d'amis",vAntichambreDAmis);
+        
 
         Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.png");
         aRooms.put("Salle du puzzle",vSallePuzzle);
@@ -94,26 +93,23 @@ public class GameEngine
         vHall.setExits("west",vCouloirG);
 
         vCouloirD.setExits("east",vChambreDAmis);
-        vCouloirD.setExits("west",vHall);
+        vCouloirD.setExits("west",vCouloirF);
 
-        vCouloirG.setExits("east",vHall);
+        vCouloirG.setExits("east",vCouloirF);
         vCouloirG.setExits("west",vChambrePrincipale);
 
         vCouloirF.setExits("north",vBibliotheque);
-        vCouloirF.setExits("south",vHall);
+    //         vCouloirF.setExits("south",vHall);
         vCouloirF.setExits("east",vCouloirD);
         vCouloirF.setExits("west",vCouloirG);
 
         vBibliotheque.setExits("south",vCouloirF);
 
-        vChambreDAmis.setExits("north",vAntichambreDAmis);
+        vChambreDAmis.setExits("north",vSallePuzzle);
         vChambreDAmis.setExits("west",vCouloirD);
 
-        vAntichambreDAmis.setExits("north",vSallePuzzle);
-        vAntichambreDAmis.setExits("south",vChambreDAmis);
-
         vSallePuzzle.setExits("north",vEscape);
-        vSallePuzzle.setExits("south",vAntichambreDAmis);
+        vSallePuzzle.setExits("south",vChambreDAmis);
 
         vChambrePrincipale.setExits("north",vSalleEquipement);
         vChambrePrincipale.setExits("east",vCouloirG);

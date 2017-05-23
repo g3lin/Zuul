@@ -151,8 +151,12 @@ public class CustomPanel extends JPanel implements MouseListener {
 
             // CLICS SUR LES OBJETS
             for (Sprite vSprite : this.aSprites.values()){
-                if(vX > vSprite.getX()&& vX < vSprite.getX()+ vSprite.getAdjustedWidth() &&  (vY > vSprite.getY()&& vX < vSprite.getX()+ vSprite.getAdjustedHeight()) ){
-                    this.aEngine.interpretCommand("take item");
+                boolean x1 = vX > vSprite.getX();
+                boolean x2 = vX < vSprite.getX()+ 10;
+                boolean y1 = vY > vSprite.getY();
+                boolean y2 = vX < vSprite.getX()+ 10;
+                if(( x1 && x2)&&( y1 && y2)){
+                    this.aEngine.interpretCommand("take "+vSprite.getName());
                 }
             }
 

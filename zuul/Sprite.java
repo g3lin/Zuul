@@ -3,6 +3,8 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.lang.InterruptedException;
 
+
+
 /**
  * Un cercle qui peut etre manipule et qui se dessine sur une toile (canvas).
  * 
@@ -11,7 +13,7 @@ import java.lang.InterruptedException;
  * @version 2006.03.30/2012.02.15
  */
 
-public class Sprite
+public class Sprite 
 {
 
     private String  aName;
@@ -227,4 +229,9 @@ public class Sprite
         return this.aName;
 
     } //getposition
+    
+
+    
+    
+    
 } // Cercle
