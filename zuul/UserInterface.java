@@ -45,6 +45,7 @@ public class UserInterface implements ActionListener
     private JFrame     aMyFrame;
     private JTextField aEntryField;
     private JTextPane  aLog;
+    private JLabel  aTimer;
     private CustomPanel aUI;
     private JButton    aButton1;
     private JButton    aButton2;
@@ -146,6 +147,9 @@ public class UserInterface implements ActionListener
         this.aButton3.addActionListener(this);
 
         vButtons.setMaximumSize(vButtons.getPreferredSize());
+        
+        this.aTimer = new JLabel("timer");
+        vPanel.add(this.aTimer);
         vPanel.add( vButtons);
 
         //PLACEMENT DE LA ZONE DE TEXTE
@@ -225,5 +229,9 @@ public class UserInterface implements ActionListener
 
         this.aEngine.interpretCommand( vInput );
     } // processCommand()
-
+     
+    public void updateTimeGUI(final int pTime){
+        this.aTimer.setText(pTime/60+":"+pTime%60);
+        
+    }
 } // UserInterface 

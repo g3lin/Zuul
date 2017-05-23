@@ -1,9 +1,17 @@
+/**
+ * @author pour le timer en temps reel
+ * @author https://docs.oracle.com/javase/8/docs/technotes/guides/lang/Countdown.java
+ */
+
 import java.util.HashMap; 
 import java.util.Stack; 
 
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import java.util.Timer;
+import java.util.TimerTask;
 // import java.io.PrintWriter;
 
 public class GameEngine
@@ -13,6 +21,8 @@ public class GameEngine
     private HashMap<String,Room> aRooms;
     private UserInterface aGUI;
     private Player aPlayer;
+    private Timer aTimer;
+    private int aTime;
 
     /**
      * constructeur par defaut de la classe Game
@@ -23,6 +33,8 @@ public class GameEngine
         aRooms = new HashMap<String,Room> ();
         this.aPlayer = new Player();
         createRooms();
+        this.aTime = 150;
+
         this.aParser = new Parser();
 
     }
@@ -125,6 +137,23 @@ public class GameEngine
 
     }
 
+    public void createTimer(){
+        UserInterface vGUI = this.aGUI;
+
+        final Timer timer = new Timer();
+        TimerElement vTT = new TimerElement();
+        vTT.pass(this, timer);
+        timer.scheduleAtFixedRate(vTT, 0, 1000);
+
+    }
+    public void updateTime(final int pTime){
+        this.aGUI.updateTimeGUI(pTime);
+    }
+
+    public int getTime(){
+        return this.aTime;
+    }
+
     /**
      * procedure affichant via S.o.p l'intro du jeu ainsi que la localisation du joueur
      */
@@ -133,6 +162,7 @@ public class GameEngine
         aGUI.println("World of Zuul is a new, incredibly boring adventure game.");
         aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
         aGUI.showImage(aPlayer.getCurrentRoom().getImageName());
+        createTimer();
     }
 
     public Player getPlayer(){
@@ -151,9 +181,8 @@ public class GameEngine
         CommandWord vCommandWord = vCommand.getCommandWord();
         switch(vCommandWord){
             case UNKNOWN :
-                System.out.println("La commance n'est pas reconnue");
-                break;
-            
+            System.out.println("La commance n'est pas reconnue");
+            break;
 
             case   QUIT :
             if(vCommand.hasSecondWord())
@@ -358,5 +387,9 @@ public class GameEngine
 
     public void inventaire(){
         this.aGUI.println(this.aPlayer.getInventory());
+    }
+
+    public void gameOver(){
+        this.aGUI.println("game over");
     }
 } // Game
