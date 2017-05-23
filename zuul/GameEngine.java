@@ -113,12 +113,16 @@ public class GameEngine
         //DECLARE LES OBJETS DU JEU
         Item vBague = new Item(15,"dague","une dague rouillée");
         Item vMontre = new Item(150,"montre","une montre rolex");
-        Item vMarteau = new Item(500,"Marteau","un marteau de bricolage");
+        Item vMarteau = new Item(500,"marteau","un marteau de bricolage");
+        Item vCookie = new Item(15,"cookie","un cookie brillant et attirant");
 
         vCouloirF.getItems().setItem(vMontre);
         vCouloirF.getItems().setItem(vMarteau);
 
         vHall.getItems().setItem(vBague);
+        
+        vSalleEquipement.getItems().setItem(vCookie);
+        
 
     }
     /**
@@ -205,6 +209,11 @@ public class GameEngine
             if(vCommand.hasSecondWord())
                 aGUI.println("Je n'ai n'ai pas compris");
             else inventaire();
+        }
+        else if (vCommandWord.equals("use")){
+            if(vCommand.hasSecondWord())
+                use(vCommand.getSecondWord() );
+            else aGUI.println("Utisliser quoi ?");
         }
 
         else {
@@ -333,7 +342,23 @@ public class GameEngine
         }
         this.aGUI.setSprites();
     }
-
+    
+    public void use(final String pItemString){
+        if (pItemString.equals("cookie")){
+            Item vItem = this.aPlayer.getCurrentRoom().getItems().takeItem(pItemString);
+            if ( vItem != null){
+                this.aGUI.println("Vous decidez de manger le cookie");
+                this.aGUI.println("Cela ne vous fait rien mais vous trouvez derriere le cookie un exosquelette");
+                this.aGUI.println("Vous pouvez maintenant porter bien plus d'objets sur vous");
+                this.aPlayer.setPoidsMax(this.aPlayer.getPoidsMax()*5);
+            }
+            else{
+                this.aGUI.println("Vous ne trouvez pas l'objet que vous voulez utiliser dans la piece");
+                this.aGUI.println("Essayez de le poser si il est dans votre inventaire");
+            }
+        }
+    }
+    
     public void inventaire(){
         this.aGUI.println(this.aPlayer.getInventory());
     }
