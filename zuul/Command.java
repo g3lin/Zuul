@@ -41,12 +41,12 @@ public class Command
         return this.aSecondWord != null;
         }
         
-    /**
-     * verifie si la command a un 1er mot
-     * @return si la command a un 1er mot
+        /**
+     * @return true if this command was not understood.
      */
-        public boolean isUnknown(){
-        return this.aCommandWord == null;
-        }
+    public boolean isUnknown()
+    {
+        return (this.aCommandWord == CommandWord.UNKNOWN);
+    }
         
 } // Command
