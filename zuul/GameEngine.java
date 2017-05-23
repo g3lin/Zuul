@@ -148,69 +148,71 @@ public class GameEngine
     public void interpretCommand(final String pCommand){
         aGUI.println(pCommand);
         Command vCommand = aParser.getCommand(pCommand);
-        String vCommandWord = vCommand.getCommandWord();
+        CommandWord vCommandWord = vCommand.getCommandWord();
+        
+        if(vCommandWord == CommandWord.UNKNOWN) {
+            System.out.println("La commance n'est pas reconnue");
+            
+        }
 
-        if ( vCommandWord.equals("quit") ){
+        if ( vCommandWord== CommandWord.QUIT ){
             if(vCommand.hasSecondWord())
                 aGUI.println("Quit what?");
             else quit();
         }
 
-        else if (vCommandWord.equals("help")){
+        else if (vCommandWord == CommandWord.HELP){
             printHelp();
 
         }
 
-        else if (vCommandWord.equals("go")){
+        else if (vCommandWord == CommandWord.GO){
             goRoom(vCommand);
 
         }
 
-        else if (vCommand.isUnknown() ) {
-            aGUI.println("I don't know what you mean...");
+       
 
-        }
-
-        else if (vCommandWord.equals("look")){
+        else if (vCommandWord == CommandWord.LOOK){
             look();
 
         }
 
-        else if (vCommandWord.equals("eat")){
+        else if (vCommandWord == CommandWord.EAT){
             eat();
 
         }
 
-        else if (vCommandWord.equals("back")){
+        else if (vCommandWord == CommandWord.BACK){
             if(vCommand.hasSecondWord())
                 aGUI.println("Je n'ai n'ai pas compris");
             else back();
         }
 
-        else if (vCommandWord.equals("test")){
+        else if (vCommandWord == CommandWord.TEST){
             if(vCommand.hasSecondWord())
                 test(vCommand.getSecondWord() );
             else aGUI.println("Spécifier le fichier de test");
         }
 
-        else if (vCommandWord.equals("take")){
+        else if (vCommandWord == CommandWord.TAKE){
             if(vCommand.hasSecondWord())
                 take(vCommand.getSecondWord() );
             else aGUI.println("Prendre quoi ?");
         }
 
-        else if (vCommandWord.equals("drop")){
+        else if (vCommandWord == CommandWord.DROP){
             if(vCommand.hasSecondWord())
                 drop(vCommand.getSecondWord() );
             else aGUI.println("Lacher quoi ?");
         }
 
-        else if (vCommandWord.equals("inventaire")){
+        else if (vCommandWord == CommandWord.STUFF){
             if(vCommand.hasSecondWord())
                 aGUI.println("Je n'ai n'ai pas compris");
             else inventaire();
         }
-        else if (vCommandWord.equals("use")){
+        else if (vCommandWord == CommandWord.USE){
             if(vCommand.hasSecondWord())
                 use(vCommand.getSecondWord() );
             else aGUI.println("Utisliser quoi ?");

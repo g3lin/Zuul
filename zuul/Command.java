@@ -2,7 +2,7 @@
 
 public class Command
 {
-    private String aCommandWord = null;
+    private CommandWord aCommandWord = null;
     private String aSecondWord = null;
     
     
@@ -12,7 +12,7 @@ public class Command
      * @param pCommmandWord 1er mot
      * @param pSecond Word 2eme mot
      */
-    public Command(final String pCommandWord, final String pSecondWord){
+    public Command(final CommandWord pCommandWord, final String pSecondWord){
         this.aCommandWord=pCommandWord;
         this.aSecondWord=pSecondWord;        
     }
@@ -21,7 +21,7 @@ public class Command
      * permet de retourner le 1er mot
      * @return le 1er mot de la commande
      */
-    public String getCommandWord(){
+    public CommandWord getCommandWord(){
         return this.aCommandWord;
     }
     

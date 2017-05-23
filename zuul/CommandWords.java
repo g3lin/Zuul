@@ -1,3 +1,4 @@
+import java.util.HashMap;
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -14,44 +15,66 @@
 public class CommandWords
 {
     // tableau constant qui contient tous les mots de commande valides
-    private static final String[] aValidCommands = {
-        "go", "quit", "help" ,"look", "eat", "back", "test", "take","drop","inventaire","use"
-    };
+   private HashMap<String, CommandWord> validCommands;
 
     /**
      * Constructeur par defaut
      */
     public CommandWords()
     {
-        // rien a faire pour le moment...
+        validCommands = new HashMap<String, CommandWord>();
+        validCommands.put("go", CommandWord.GO);
+        validCommands.put("help", CommandWord.HELP);
+        validCommands.put("quit", CommandWord.QUIT);
+        validCommands.put("look", CommandWord.LOOK);
+        validCommands.put("eat", CommandWord.EAT);
+        validCommands.put("back", CommandWord.BACK);
+        validCommands.put("test", CommandWord.TEST);
+        validCommands.put("take", CommandWord.TAKE);
+        validCommands.put("drop", CommandWord.DROP);
+        validCommands.put("use", CommandWord.USE);
+        validCommands.put("inventaire", CommandWord.STUFF);
     } // CommandWords()
 
     /**
-     * Verifie si une String donnee fait partie des commandes valides. 
-     * @param pString la String a tester
-     * @return true si pString est une comande valide, false sinon
+     * Find the CommandWord associated with a command word.
+     * @param commandWord The word to look up.
+     * @return The CommandWord correspondng to commandWord, or UNKNOWN
+     *         if it is not a valid command word.
      */
-    public boolean isCommand( final String pString )
+    public CommandWord getCommandWord(String commandWord)
     {
-        // pour chacune des commandes valides (du tableau constant)
-        for ( int i=0; i<aValidCommands.length; i++ ) {
-            // si elle est egale a pString
-            if ( aValidCommands[i].equals( pString ) )
-                return true;
-        } // for
-        // si nous arrivons la, c'est que la commande
-        // n'a pas ete trouvee dans le tableau
-        return false;
-    } // isCommand()
+        CommandWord command = validCommands.get(commandWord);
+        if(command != null) {
+            return command;
+        }
+        else {
+            return CommandWord.UNKNOWN;
+        }
+    }
     
     /**
-     * Print all valid commands 
+     * Check whether a given String is a valid command word. 
+     * @return true if it is, false if it isn't.
      */
-    public String showAll(){
+    public boolean isCommand(String aString)
+    {
+        return validCommands.containsKey(aString);
+    }
+
+    /**
+     * Print all valid commands to System.out.
+     */
+    public String showAll() 
+    {
+        
         String vCommands = "";
-        for ( int i=0; i<aValidCommands.length; i++ ) {
-            vCommands += (aValidCommands[i]+" ");
+        for(String command : validCommands.keySet()) {
+            System.out.print(command + "  ");
+            vCommands += command+"    ";
         }
         return vCommands;
     }
+    
+    
 } // CommandWords
