@@ -120,11 +120,11 @@ public class GameEngine
         vCouloirF.getItems().setItem(vMarteau);
 
         vHall.getItems().setItem(vBague);
-        
+
         vSalleEquipement.getItems().setItem(vCookie);
-        
 
     }
+
     /**
      * procedure affichant via S.o.p l'intro du jeu ainsi que la localisation du joueur
      */
@@ -149,80 +149,75 @@ public class GameEngine
         aGUI.println(pCommand);
         Command vCommand = aParser.getCommand(pCommand);
         CommandWord vCommandWord = vCommand.getCommandWord();
-        
-        if(vCommandWord == CommandWord.UNKNOWN) {
-            System.out.println("La commance n'est pas reconnue");
+        switch(vCommandWord){
+            case UNKNOWN :
+                System.out.println("La commance n'est pas reconnue");
+                break;
             
-        }
 
-        if ( vCommandWord== CommandWord.QUIT ){
+            case   QUIT :
             if(vCommand.hasSecondWord())
                 aGUI.println("Quit what?");
             else quit();
-        }
+            break;
 
-        else if (vCommandWord == CommandWord.HELP){
+            case  HELP:
             printHelp();
+            break;
 
-        }
-
-        else if (vCommandWord == CommandWord.GO){
+            case GO:
             goRoom(vCommand);
+            break;
 
-        }
-
-       
-
-        else if (vCommandWord == CommandWord.LOOK){
+            case  LOOK:
             look();
+            break;
 
-        }
-
-        else if (vCommandWord == CommandWord.EAT){
+            case EAT:
             eat();
+            break;
 
-        }
-
-        else if (vCommandWord == CommandWord.BACK){
+            case BACK:
             if(vCommand.hasSecondWord())
                 aGUI.println("Je n'ai n'ai pas compris");
             else back();
-        }
+            break;
 
-        else if (vCommandWord == CommandWord.TEST){
+            case TEST:
             if(vCommand.hasSecondWord())
                 test(vCommand.getSecondWord() );
             else aGUI.println("Spécifier le fichier de test");
-        }
+            break;
 
-        else if (vCommandWord == CommandWord.TAKE){
+            case TAKE:
             if(vCommand.hasSecondWord())
                 take(vCommand.getSecondWord() );
             else aGUI.println("Prendre quoi ?");
-        }
+            break;
 
-        else if (vCommandWord == CommandWord.DROP){
+            case DROP:
             if(vCommand.hasSecondWord())
                 drop(vCommand.getSecondWord() );
             else aGUI.println("Lacher quoi ?");
-        }
+            break;
 
-        else if (vCommandWord == CommandWord.STUFF){
+            case  STUFF:
             if(vCommand.hasSecondWord())
                 aGUI.println("Je n'ai n'ai pas compris");
             else inventaire();
-        }
-        else if (vCommandWord == CommandWord.USE){
+            break;
+
+            case USE:
             if(vCommand.hasSecondWord())
                 use(vCommand.getSecondWord() );
             else aGUI.println("Utisliser quoi ?");
-        }
+            break;
 
-        else {
+            default:
             aGUI.println("I don't know what you mean...");
+            break;
 
         }
-
     }
 
     /**
@@ -344,7 +339,7 @@ public class GameEngine
         }
         this.aGUI.setSprites();
     }
-    
+
     public void use(final String pItemString){
         if (pItemString.equals("cookie")){
             Item vItem = this.aPlayer.getCurrentRoom().getItems().takeItem(pItemString);
@@ -360,7 +355,7 @@ public class GameEngine
             }
         }
     }
-    
+
     public void inventaire(){
         this.aGUI.println(this.aPlayer.getInventory());
     }
