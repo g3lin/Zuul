@@ -52,6 +52,10 @@ public class Player
     public Stack<Room> getHistory(){
         return this.aHistory;
     }
+    
+    public void resetHistory(){
+        this.aHistory = new Stack<Room>();
+    }
 
     public ItemList getItems(){
         return this.aItems;

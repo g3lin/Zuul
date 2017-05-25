@@ -13,6 +13,8 @@ public class Item
     private String aName;
     private String aDescription;
     private Sprite aSprite;
+    private int aState;
+    private Object aStateVar;
 
     /**
      * default constructor for objects of class Item
@@ -23,6 +25,8 @@ public class Item
         this.aPoids = pPoids;
         this.aName = pName;
         this.aDescription = pDescription;
+        this.aState = 0;
+        this.aStateVar = null;
         String vS = "";
         try {
             ImageIO.read(new File("Images/"+pName+".png"));
@@ -63,4 +67,22 @@ public class Item
     public Sprite getSprite(){
         return this.aSprite;
     }
+    
+    public void setState(final int pState) {
+        this.aState = pState;
+    }
+    
+    public int getState(){
+        return this.aState;
+    }
+    
+    public void setStateVar(final Object pStateVar) {
+        this.aStateVar = pStateVar;
+    }
+    
+    public Object getStateVar(){
+        return this.aStateVar;
+    }
+    
+    
 } // Item

@@ -121,6 +121,7 @@ public class GameEngine
         Item vMontre = new Item(150,"montre","une montre rolex");
         Item vMarteau = new Item(500,"marteau","un marteau de bricolage");
         Item vCookie = new Item(15,"cookie","un cookie brillant et attirant");
+        Item vBeamer = new Item(600,"beamer","un beamer, objet à l'apparence futuristique");
 
         vCouloirF.getItems().setItem(vMontre);
         vCouloirF.getItems().setItem(vMarteau);
@@ -128,6 +129,8 @@ public class GameEngine
         vHall.getItems().setItem(vBague);
 
         vSalleEquipement.getItems().setItem(vCookie);
+        vSalleEquipement.getItems().setItem(vBeamer);
+
 
     }
 
@@ -315,7 +318,7 @@ public class GameEngine
         if (! this.aPlayer.getHistory().empty()) {
             Room vRoomPre = this.aPlayer.getHistory().pop();
             if (vRoomPre.getDescription().equals("Entrée du manoir")){
-                this.aGUI.print("Vous ne pouvez pas revenir plus loin "); 
+                this.aGUI.print("Vous ne pouvez pas revenir plus loin use"); 
                 this.aGUI.println("car la porte s'est refermée quand vous êtes entré");
             }
             else{
@@ -387,8 +390,37 @@ public class GameEngine
                 this.aGUI.println("Vous ne trouvez pas l'objet que vous voulez utiliser dans la piece");
                 this.aGUI.println("Essayez de le poser si il est dans votre inventaire");
             }
+            this.aGUI.setSprites();
         }
-        this.aGUI.setSprites();
+
+        if (pItemString.equals("beamer")){
+            Item vItem = this.aPlayer.getCurrentRoom().getItems().takeItem(pItemString);
+            if ( vItem != null){
+                if (vItem.getState() == 0){
+                    this.aGUI.println("Ce beamer est maintenant chargé");
+                    this.aGUI.println("Si vous l'utilisez encore il vous ramènera ");
+                    this.aGUI.print("instantanément dans la pièce actuelle");
+                    this.aGUI.println("\n CET OBJET EST SECRET DEFENSE");
+                    vItem.setState(1);
+                    vItem.setStateVar(this.aPlayer.getCurrentRoom());
+                }
+                else if (vItem.getState() == 1){
+                    this.aGUI.println("BEAMER ACTIVÉ");
+                    this.aGUI.println("\n TÉLÉPORTATION EN COURS");
+                    Room vRoom = (Room)vItem.getStateVar();
+                    goToRoom(vRoom);
+                    this.aPlayer.resetHistory();
+                    vItem.setState(0);
+                }
+               
+                this.aPlayer.getCurrentRoom().getItems().setItem(vItem);
+            }
+            else{
+                this.aGUI.println("Vous ne trouvez pas l'objet que vous voulez utiliser dans la piece");
+                this.aGUI.println("Essayez de le poser si il est dans votre inventaire");
+            }
+            this.aGUI.setSprites();
+        }
     }
 
     public void inventaire(){
