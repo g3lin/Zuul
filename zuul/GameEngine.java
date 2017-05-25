@@ -23,7 +23,6 @@ public class GameEngine
     private Player aPlayer;
     private Timer aTimer;
     private int aTime;
-  
 
     /**
      * constructeur par defaut de la classe Game
@@ -56,38 +55,39 @@ public class GameEngine
      */
     private void createRooms(){
         Room vHall = new Room("Entrée du manoir" ,"Images/hall.png");
-        aRooms.put("Hall",vHall);
+        aRooms.put("entree",vHall);
 
         Room vCouloirD = new Room("Couloir à droite de l'entrée","Images/couloirD.png" );
-        aRooms.put("Couloir droite",vCouloirD);
+        aRooms.put("couloirD",vCouloirD);
 
         Room vCouloirG = new Room("Couloir à Gauche de l'entrée" ,"Images/couloirG.png");
-        aRooms.put("Couloir Gauche",vCouloirG);
+        aRooms.put("couloirG",vCouloirG);
 
         Room vCouloirF = new Room("Couloir en face de l'entrée", "Images/couloirF.png" );
-        aRooms.put("Couloir face",vCouloirF);
+        aRooms.put("couloirF",vCouloirF);
 
         Room vBibliotheque = new Room("Grande bibliothèque","Images/bibliotheque.png" );
-        aRooms.put("Bibliotheque",vBibliotheque);
+        aRooms.put("bibliotheque",vBibliotheque);
 
         Room vChambreDAmis = new Room("Chambre d'amis" ,"Images/chambreAmis.png");
-        aRooms.put("Chambre d'amis",vChambreDAmis);
+        aRooms.put("chambreamis",vChambreDAmis);
 
         Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.png");
-        aRooms.put("Salle du puzzle",vSallePuzzle);
-        
+        aRooms.put("sallepuzzle",vSallePuzzle);
+
         Room vChambrePrincipale = new Room("Chambre du maitre de maison","Images/chambrePrincipale.png" );
-        aRooms.put("Chambre Principale",vChambrePrincipale);
+        aRooms.put("chambreprincipale",vChambrePrincipale);
 
         Room vSalleEquipement = new Room("Salle secrete de l'équipement","Images/salleEquipement.png" );
-        aRooms.put("Salle Equipement",vSalleEquipement);
+        aRooms.put("lab",vSalleEquipement);
 
         String vDescTPRoom = "Salle expérimentale permettant de se téléporter à un endroit de la maison au hasard";
         Room[] vExitsArray = new Room[]{vSalleEquipement, vChambrePrincipale, vBibliotheque, vCouloirG};
         TransporterRoom vTPRoom = new TransporterRoom(vDescTPRoom, "Images/TPRoom.png", vExitsArray);
-       
+        aRooms.put("tproom",vTPRoom);
+
         Room vEscape = new Room("Crypte avec un bateau pour s'echapper","Images/escape.png"  );
-        aRooms.put("Salle finale",vEscape);
+        aRooms.put("escape",vEscape);
 
         this.aPlayer.setCurrentRoom(vHall);
         // SET LES EXITS 
@@ -136,7 +136,6 @@ public class GameEngine
 
         vSalleEquipement.getItems().setItem(vCookie);
         vSalleEquipement.getItems().setItem(vBeamer);
-
 
     }
 
@@ -250,8 +249,14 @@ public class GameEngine
             else aGUI.println("Utisliser quoi ?");
             break;
 
+            case ALEA:
+            if(vCommand.hasSecondWord())
+                alea(vCommand.getSecondWord() );
+            else aGUI.println("spécifiez une room de triche");
+            break;
+
             default:
-            aGUI.println("I don't know what you mean...");
+            aGUI.println("Je n'ai pas compris");
             break;
 
         }
@@ -418,7 +423,7 @@ public class GameEngine
                     this.aPlayer.resetHistory();
                     vItem.setState(0);
                 }
-               
+
                 this.aPlayer.getCurrentRoom().getItems().setItem(vItem);
             }
             else{
@@ -431,6 +436,22 @@ public class GameEngine
 
     public void inventaire(){
         this.aGUI.println(this.aPlayer.getInventory());
+    }
+
+    public void alea(final String pS){
+        System.out.print("tg");
+        Room vR = aRooms.get(pS);
+        if (vR != null){
+            Room vRTPR = aRooms.get("tproom");
+            TransporterRoom vTPR = (TransporterRoom) vRTPR;
+            System.out.print(vTPR);
+            System.out.print(vR);
+
+            vTPR.setPseudoRandom(vR);
+        }
+        else{
+            this.aGUI.println("Salle non trouvée");
+        }
     }
 
     public void gameOver(){
