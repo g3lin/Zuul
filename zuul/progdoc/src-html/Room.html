@@ -16,7 +16,7 @@
 <span class="sourceLineNo">008</span>    private String aDescription ;<a name="line.8"></a>
 <span class="sourceLineNo">009</span>    private HashMap&lt;String,Room&gt; aExits;<a name="line.9"></a>
 <span class="sourceLineNo">010</span>    private String aImageName;<a name="line.10"></a>
-<span class="sourceLineNo">011</span>    private Map&lt;String, Item&gt; aItems;<a name="line.11"></a>
+<span class="sourceLineNo">011</span>    private ItemList aItems;<a name="line.11"></a>
 <span class="sourceLineNo">012</span><a name="line.12"></a>
 <span class="sourceLineNo">013</span>    /**<a name="line.13"></a>
 <span class="sourceLineNo">014</span>     * Constructeur mettant en place la description<a name="line.14"></a>
@@ -26,9 +26,9 @@
 <span class="sourceLineNo">018</span>     */<a name="line.18"></a>
 <span class="sourceLineNo">019</span>    public Room(final String pDescription, String pImage){<a name="line.19"></a>
 <span class="sourceLineNo">020</span>        this.aDescription=pDescription;<a name="line.20"></a>
-<span class="sourceLineNo">021</span>        aExits = new  HashMap&lt;String,Room&gt;();<a name="line.21"></a>
+<span class="sourceLineNo">021</span>        this.aExits = new  HashMap&lt;String,Room&gt;();<a name="line.21"></a>
 <span class="sourceLineNo">022</span>        this.aImageName = pImage;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>        aItems = new HashMap&lt;String,Item&gt;();<a name="line.23"></a>
+<span class="sourceLineNo">023</span>        this.aItems= new ItemList();<a name="line.23"></a>
 <span class="sourceLineNo">024</span>    }<a name="line.24"></a>
 <span class="sourceLineNo">025</span><a name="line.25"></a>
 <span class="sourceLineNo">026</span>    /**<a name="line.26"></a>
@@ -64,40 +64,33 @@
 <span class="sourceLineNo">056</span>    public String getLongDescription(){<a name="line.56"></a>
 <span class="sourceLineNo">057</span>        String vDescription = "Vous êtes dans "+ this.getDescription()+"\n Vous pouvez aller vers: "+this.getExitString() ;<a name="line.57"></a>
 <span class="sourceLineNo">058</span>        if (! this.aItems.isEmpty() ) {<a name="line.58"></a>
-<span class="sourceLineNo">059</span>            vDescription += "\n Vous trouvez dans cette salle :";<a name="line.59"></a>
-<span class="sourceLineNo">060</span>            for (Item vI : this.aItems.values() ){<a name="line.60"></a>
-<span class="sourceLineNo">061</span>                vDescription += vI.getDescription()+ "   ";<a name="line.61"></a>
-<span class="sourceLineNo">062</span>            }<a name="line.62"></a>
-<span class="sourceLineNo">063</span>        }<a name="line.63"></a>
-<span class="sourceLineNo">064</span>        return vDescription;<a name="line.64"></a>
-<span class="sourceLineNo">065</span>    }<a name="line.65"></a>
-<span class="sourceLineNo">066</span><a name="line.66"></a>
-<span class="sourceLineNo">067</span>    /**<a name="line.67"></a>
-<span class="sourceLineNo">068</span>     * affiche le string des sorties disponibles en sortant de cette salle<a name="line.68"></a>
-<span class="sourceLineNo">069</span>     */<a name="line.69"></a>
-<span class="sourceLineNo">070</span>    public String getExitString(){<a name="line.70"></a>
-<span class="sourceLineNo">071</span>        StringBuilder vExits = new StringBuilder( "Exits:" );<a name="line.71"></a>
-<span class="sourceLineNo">072</span>        for ( String vS : aExits.keySet() )<a name="line.72"></a>
-<span class="sourceLineNo">073</span>            vExits.append( " " + vS );<a name="line.73"></a>
-<span class="sourceLineNo">074</span>        return vExits.toString();<a name="line.74"></a>
-<span class="sourceLineNo">075</span>    }<a name="line.75"></a>
-<span class="sourceLineNo">076</span><a name="line.76"></a>
-<span class="sourceLineNo">077</span>    public void setItem(final Item pItem){<a name="line.77"></a>
-<span class="sourceLineNo">078</span>        this.aItems.put(pItem.getDescription(),pItem);<a name="line.78"></a>
-<span class="sourceLineNo">079</span>    }<a name="line.79"></a>
-<span class="sourceLineNo">080</span><a name="line.80"></a>
-<span class="sourceLineNo">081</span>    public Object[] getItems(){<a name="line.81"></a>
-<span class="sourceLineNo">082</span>        return this.aItems.values().toArray(); <a name="line.82"></a>
-<span class="sourceLineNo">083</span>    }<a name="line.83"></a>
-<span class="sourceLineNo">084</span><a name="line.84"></a>
-<span class="sourceLineNo">085</span>    /**<a name="line.85"></a>
-<span class="sourceLineNo">086</span>     * Return a string describing the room's image name<a name="line.86"></a>
-<span class="sourceLineNo">087</span>     */<a name="line.87"></a>
-<span class="sourceLineNo">088</span>    public String getImageName()<a name="line.88"></a>
-<span class="sourceLineNo">089</span>    {<a name="line.89"></a>
-<span class="sourceLineNo">090</span>        return aImageName;<a name="line.90"></a>
-<span class="sourceLineNo">091</span>    }<a name="line.91"></a>
-<span class="sourceLineNo">092</span>} // Room<a name="line.92"></a>
+<span class="sourceLineNo">059</span>            vDescription += "\n Vous trouvez dans cette salle :"+this.aItems.inventory();<a name="line.59"></a>
+<span class="sourceLineNo">060</span>        }<a name="line.60"></a>
+<span class="sourceLineNo">061</span>        return vDescription;<a name="line.61"></a>
+<span class="sourceLineNo">062</span>    }<a name="line.62"></a>
+<span class="sourceLineNo">063</span><a name="line.63"></a>
+<span class="sourceLineNo">064</span>    /**<a name="line.64"></a>
+<span class="sourceLineNo">065</span>     * affiche le string des sorties disponibles en sortant de cette salle<a name="line.65"></a>
+<span class="sourceLineNo">066</span>     */<a name="line.66"></a>
+<span class="sourceLineNo">067</span>    public String getExitString(){<a name="line.67"></a>
+<span class="sourceLineNo">068</span>        StringBuilder vExits = new StringBuilder( "Exits:" );<a name="line.68"></a>
+<span class="sourceLineNo">069</span>        for ( String vS : aExits.keySet() )<a name="line.69"></a>
+<span class="sourceLineNo">070</span>            vExits.append( " " + vS );<a name="line.70"></a>
+<span class="sourceLineNo">071</span>        return vExits.toString();<a name="line.71"></a>
+<span class="sourceLineNo">072</span>    }<a name="line.72"></a>
+<span class="sourceLineNo">073</span><a name="line.73"></a>
+<span class="sourceLineNo">074</span>    public ItemList getItems(){<a name="line.74"></a>
+<span class="sourceLineNo">075</span>        return this.aItems;<a name="line.75"></a>
+<span class="sourceLineNo">076</span>    }<a name="line.76"></a>
+<span class="sourceLineNo">077</span><a name="line.77"></a>
+<span class="sourceLineNo">078</span>    /**<a name="line.78"></a>
+<span class="sourceLineNo">079</span>     * Return a string describing the room's image name<a name="line.79"></a>
+<span class="sourceLineNo">080</span>     */<a name="line.80"></a>
+<span class="sourceLineNo">081</span>    public String getImageName()<a name="line.81"></a>
+<span class="sourceLineNo">082</span>    {<a name="line.82"></a>
+<span class="sourceLineNo">083</span>        return aImageName;<a name="line.83"></a>
+<span class="sourceLineNo">084</span>    }<a name="line.84"></a>
+<span class="sourceLineNo">085</span>} // Room<a name="line.85"></a>
 
 
 

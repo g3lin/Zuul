@@ -1,35 +1,25 @@
 help
-
 eat
-
 look
-
 go north
-
 go north
-
 back
-
 go west
-
 go west
-
 go north
-
 use cookie
+use beamer
+take beamer
 back
-
 back
-
 back
-
+drop beamer
+use beamer
+go south
 go east
-
 go east
-
+go east
+go east
 go north
-
 go north
-
 go north
-
