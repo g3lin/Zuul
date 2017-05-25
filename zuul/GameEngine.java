@@ -54,7 +54,7 @@ public class GameEngine
      * Met en place les sorties des salles par arpport aux autres
      */
     private void createRooms(){
-        Room vHall = new Room("Hall d'entrée central du manoir" ,"Images/hall.png");
+        Room vHall = new Room("Entrée du manoir" ,"Images/hall.png");
         aRooms.put("Hall",vHall);
 
         Room vCouloirD = new Room("Couloir à droite de l'entrée","Images/couloirD.png" );
@@ -71,7 +71,6 @@ public class GameEngine
 
         Room vChambreDAmis = new Room("Chambre d'amis" ,"Images/chambreAmis.png");
         aRooms.put("Chambre d'amis",vChambreDAmis);
-
 
         Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.png");
         aRooms.put("Salle du puzzle",vSallePuzzle);
@@ -315,7 +314,13 @@ public class GameEngine
     public void back(){
         if (! this.aPlayer.getHistory().empty()) {
             Room vRoomPre = this.aPlayer.getHistory().pop();
-            goToRoom(vRoomPre);
+            if (vRoomPre.getDescription().equals("Entrée du manoir")){
+                this.aGUI.print("Vous ne pouvez pas revenir plus loin "); 
+                this.aGUI.println("car la porte s'est refermée quand vous êtes entré");
+            }
+            else{
+                goToRoom(vRoomPre);
+            }
         }
         else this.aGUI.println("Vous ne pouvez pas revenir plus loin");
     }
