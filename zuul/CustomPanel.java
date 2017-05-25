@@ -150,16 +150,41 @@ public class CustomPanel extends JPanel implements MouseListener {
             }
 
             // CLICS SUR LES OBJETS
+            String vItemName = null;
             for (Sprite vSprite : this.aSprites.values()){
                 boolean x1 = vX > vSprite.getX();
-                boolean x2 = vX < vSprite.getX()+ 10;
+                boolean x2 = vX < vSprite.getX()+ 15;
                 boolean y1 = vY > vSprite.getY();
-                boolean y2 = vX < vSprite.getX()+ 10;
+                boolean y2 = vX < vSprite.getX()+ vSprite.getHeight();
                 if(( x1 && x2)&&( y1 && y2)){
-                    this.aEngine.interpretCommand("take "+vSprite.getName());
+                    vItemName = vSprite.getName();
                 }
             }
 
+            if (vItemName == null){
+                this.aEngine.getUI().setButtons(new String[]{"look","eat","back"});
+            }
+
+            else if (vItemName.equals("player")){
+                String[] vSArray;
+                if (! this.aEngine.getPlayer().getItems().isEmpty() ) {
+                    Item[] vIArray = this.aEngine.getPlayer().getItems().getItemArray();
+                    vSArray = new String[vIArray.length+1];
+                    int i = 0;
+                    for (Item vI : vIArray){
+                        vSArray[i]= "drop "+vI.getName();
+                    }
+                     vSArray[vIArray.length] = "inventaire";
+                }
+                else {
+                    vSArray = new String[]{"inventaire"};
+                }
+                this.aEngine.getUI().setButtons(vSArray);
+            }
+            
+            else{
+                this.aEngine.getUI().setButtons(new String[]{"take "+vItemName,"use "+vItemName});
+            }
         }
 
         //CLIC MILIEU

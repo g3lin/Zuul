@@ -64,7 +64,7 @@ public class CommandWords
         
         String vCommands = "";
         for(String command : validCommands.keySet()) {
-            System.out.print(command + "  ");
+            
             vCommands += command+"    ";
         }
         return vCommands;

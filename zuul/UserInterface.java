@@ -29,6 +29,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.util.Stack; 
 
 // import java.awt.image.*;
 
@@ -47,9 +48,8 @@ public class UserInterface implements ActionListener
     private JTextPane  aLog;
     private JLabel  aTimer;
     private CustomPanel aUI;
-    private JButton    aButton1;
-    private JButton    aButton2;
-    private JButton    aButton3;
+    private Stack<JButton> aStackButtons;
+    private JPanel aButtonsHolder;
     /**
      * Construct a UserInterface. As a parameter, a Game Engine
      * (an object processing and executing the game commands) is
@@ -133,24 +133,19 @@ public class UserInterface implements ActionListener
         vPanel.add( this.aUI);
 
         // PLACEMENT DES BOUTONS
-        JPanel vButtons = new JPanel();
-        this.aButton1 = new JButton("eat");
-        vButtons.add( this.aButton1);
-        this.aButton1.addActionListener(this);
+        this.aStackButtons = new Stack<JButton>();
+        this.aButtonsHolder = new JPanel();
+        JButton vButton1 = new JButton("eat");
+        JButton vButton2 = new JButton("look");
+        JButton vButton3 = new JButton("back");
 
-        this.aButton2 = new JButton("look");
-        vButtons.add( this.aButton2);
-        this.aButton2.addActionListener(this);
+        addButton(vButton1);
+        addButton(vButton2);
+        addButton(vButton3);
 
-        this.aButton3 = new JButton("back");
-        vButtons.add( this.aButton3);
-        this.aButton3.addActionListener(this);
-
-        vButtons.setMaximumSize(vButtons.getPreferredSize());
-        
         this.aTimer = new JLabel("timer");
         vPanel.add(this.aTimer);
-        vPanel.add( vButtons);
+        vPanel.add(this.aButtonsHolder);
 
         //PLACEMENT DE LA ZONE DE TEXTE
         try{
@@ -160,7 +155,7 @@ public class UserInterface implements ActionListener
             this.aLog.setFont(vPS2PFont);
         }
         catch(Exception e){}
-        
+
         vPanel.add( vListScroller);
 
         // PLACEMENT DE LA ZONE D'ENTRÉE TEXTE
@@ -185,6 +180,24 @@ public class UserInterface implements ActionListener
         setSprites();
     } // createGUI()
 
+    public void resetButtons(){
+        this.aButtonsHolder.removeAll();
+        this.aStackButtons = new Stack<JButton>();
+    }
+
+    public void addButton( final JButton pB){
+        pB.addActionListener(this);
+        this.aButtonsHolder.add(pB);
+        this.aStackButtons.push(pB);
+    }
+
+    public void setButtons(final String[] pSArray){
+        resetButtons();
+        for (String vS : pSArray){
+            addButton(new JButton(vS));
+        }
+    }
+
     public void setSprites(){
         this.aUI.resetSprites();
         Room vRoom = this.aEngine.getPlayer().getCurrentRoom();
@@ -206,14 +219,11 @@ public class UserInterface implements ActionListener
             this.processCommand();
         }
 
-        else if (pEvent.getSource() == (aButton1 )){
-            String vCommand = pEvent.getActionCommand();
-            this.aEngine.interpretCommand( vCommand );
-        }
-
-        else if (pEvent.getSource() == (aButton2 )){
-            String vCommand = pEvent.getActionCommand();
-            this.aEngine.interpretCommand( vCommand );
+        for (JButton vB : this.aStackButtons){
+            if (pEvent.getSource() == vB){
+                String vCommand = pEvent.getActionCommand();
+                this.aEngine.interpretCommand( vCommand );
+            }
         }
 
     } // actionPerformed(.)
@@ -229,9 +239,9 @@ public class UserInterface implements ActionListener
 
         this.aEngine.interpretCommand( vInput );
     } // processCommand()
-     
+
     public void updateTimeGUI(final int pTime){
         this.aTimer.setText(pTime/60+":"+pTime%60);
-        
+
     }
 } // UserInterface 

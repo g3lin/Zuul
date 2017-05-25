@@ -72,7 +72,6 @@ public class GameEngine
         Room vChambreDAmis = new Room("Chambre d'amis" ,"Images/chambreAmis.png");
         aRooms.put("Chambre d'amis",vChambreDAmis);
 
-        
 
         Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.png");
         aRooms.put("Salle du puzzle",vSallePuzzle);
@@ -99,7 +98,7 @@ public class GameEngine
         vCouloirG.setExits("west",vChambrePrincipale);
 
         vCouloirF.setExits("north",vBibliotheque);
-    //         vCouloirF.setExits("south",vHall);
+        //         vCouloirF.setExits("south",vHall);
         vCouloirF.setExits("east",vCouloirD);
         vCouloirF.setExits("west",vCouloirG);
 
@@ -142,6 +141,7 @@ public class GameEngine
         timer.scheduleAtFixedRate(vTT, 0, 1000);
 
     }
+
     public void updateTime(final int pTime){
         this.aGUI.updateTimeGUI(pTime);
     }
@@ -165,6 +165,10 @@ public class GameEngine
         return this.aPlayer;
     }
 
+    public UserInterface getUI(){
+        return this.aGUI;
+    }
+
     /**
      * methode permettant de prendre en charge les commandes
      * en fonction du 1er mot de la commande, va voir les différentes actions à effectuer
@@ -177,7 +181,7 @@ public class GameEngine
         CommandWord vCommandWord = vCommand.getCommandWord();
         switch(vCommandWord){
             case UNKNOWN :
-            System.out.println("La commance n'est pas reconnue");
+            this.aGUI.println("La commande n'est pas reconnue");
             break;
 
             case   QUIT :
@@ -379,6 +383,7 @@ public class GameEngine
                 this.aGUI.println("Essayez de le poser si il est dans votre inventaire");
             }
         }
+        this.aGUI.setSprites();
     }
 
     public void inventaire(){
