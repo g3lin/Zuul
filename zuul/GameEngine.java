@@ -23,6 +23,7 @@ public class GameEngine
     private Player aPlayer;
     private Timer aTimer;
     private int aTime;
+  
 
     /**
      * constructeur par defaut de la classe Game
@@ -74,13 +75,17 @@ public class GameEngine
 
         Room vSallePuzzle = new Room("Salle du puzzle" ,"Images/sallePuzzle.png");
         aRooms.put("Salle du puzzle",vSallePuzzle);
-
+        
         Room vChambrePrincipale = new Room("Chambre du maitre de maison","Images/chambrePrincipale.png" );
         aRooms.put("Chambre Principale",vChambrePrincipale);
 
         Room vSalleEquipement = new Room("Salle secrete de l'équipement","Images/salleEquipement.png" );
         aRooms.put("Salle Equipement",vSalleEquipement);
 
+        String vDescTPRoom = "Salle expérimentale permettant de se téléporter à un endroit de la maison au hasard";
+        Room[] vExitsArray = new Room[]{vSalleEquipement, vChambrePrincipale, vBibliotheque, vCouloirG};
+        TransporterRoom vTPRoom = new TransporterRoom(vDescTPRoom, "Images/TPRoom.png", vExitsArray);
+       
         Room vEscape = new Room("Crypte avec un bateau pour s'echapper","Images/escape.png"  );
         aRooms.put("Salle finale",vEscape);
 
@@ -113,6 +118,7 @@ public class GameEngine
         vChambrePrincipale.setExits("east",vCouloirG);
 
         vSalleEquipement.setExits("south",vChambrePrincipale);
+        vSalleEquipement.setExits("east",vTPRoom);
 
         vEscape.setExits("south",vSallePuzzle);
 
