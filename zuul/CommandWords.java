@@ -16,6 +16,7 @@ public class CommandWords
 {
     // tableau constant qui contient tous les mots de commande valides
    private HashMap<String, CommandWord> validCommands;
+   private HashMap<CommandWord, Command> aCommands;
 
     /**
      * Constructeur par defaut
@@ -28,6 +29,20 @@ public class CommandWords
                 validCommands.put(command.toString(), command);
             }
         }
+        aCommands = new HashMap<CommandWord, Command>();
+        aCommands.put(CommandWord.GO,new GoCommand());
+        aCommands.put(CommandWord.HELP,new HelpCommand(this));
+        aCommands.put(CommandWord.QUIT,new QuitCommand());
+        aCommands.put(CommandWord.LOOK,new LookCommand());
+        aCommands.put(CommandWord.EAT,new EatCommand());
+        aCommands.put(CommandWord.BACK,new BackCommand());
+        aCommands.put(CommandWord.TEST,new TestCommand());
+        aCommands.put(CommandWord.TAKE,new TakeCommand());
+        aCommands.put(CommandWord.DROP,new DropCommand());
+        aCommands.put(CommandWord.USE,new UseCommand());
+        aCommands.put(CommandWord.STUFF,new InventaireCommand());
+        aCommands.put(CommandWord.ALEA,new AleaCommand());
+        
     } // CommandWords()
 
     /**
@@ -45,6 +60,16 @@ public class CommandWords
         else {
             return CommandWord.UNKNOWN;
         }
+    }
+
+        /**
+     * Given a command word, find and return the matching command object.
+     * Return null if there is no command with this name.
+     */
+    public Command get(String pWord)
+    {
+        CommandWord vCWord = getCommandWord(pWord);
+        return (Command)this.aCommands.get(vCWord);
     }
     
     /**

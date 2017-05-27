@@ -1,29 +1,19 @@
  
 
-public class Command
+public abstract class Command
 {
-    private CommandWord aCommandWord = null;
-    private String aSecondWord = null;
-    
-    
+    private String aSecondWord ;
     /**
      * constructeur definissant les attributs de la command en fonction de ce qui lui a été passé en parametre
      * à l'initialisation 
      * @param pCommmandWord 1er mot
      * @param pSecond Word 2eme mot
      */
-    public Command(final CommandWord pCommandWord, final String pSecondWord){
-        this.aCommandWord=pCommandWord;
-        this.aSecondWord=pSecondWord;        
+    public Command(){
+        this.aSecondWord=null;        
     }
     
-    /**
-     * permet de retourner le 1er mot
-     * @return le 1er mot de la commande
-     */
-    public CommandWord getCommandWord(){
-        return this.aCommandWord;
-    }
+
     
     /**
      * permet de retourner le 2nd mot
@@ -42,11 +32,19 @@ public class Command
         }
         
         /**
-     * @return true if this command was not understood.
+     * Define the second word of this command (the word
+     * entered after the command word). Null indicates that 
+     * there was no second word.
      */
-    public boolean isUnknown()
+    public void setSecondWord(String pSecondWord)
     {
-        return (this.aCommandWord == CommandWord.UNKNOWN);
+        this.aSecondWord = pSecondWord;
     }
         
+    
+    /**
+     * Execute this command. A flag is returned indicating whether
+     * the game is over as a result of this command.
+     */
+    public abstract void execute(GameEngine aGE);    
 } // Command

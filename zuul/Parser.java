@@ -50,8 +50,12 @@ public class Parser
         // note: we just ignore the rest of the input line.
         // Now check whether this word is known. If so, create a command
         // with it. If not, create a "null" command (for unknown command).
+        Command vCommand = this.aCommandWords.get(vWord1);
+        if(vCommand != null) {
+            vCommand.setSecondWord(vWord2);
+        }
 
-            return new Command( this.aCommandWords.getCommandWord(vWord1), vWord2 );
+            return vCommand;
     } // getCommand(.)
     /**
      * Returns a String with valid command words.
