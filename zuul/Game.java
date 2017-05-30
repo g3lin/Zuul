@@ -11,21 +11,28 @@ import pkg_InterfaceElements.UserInterface;
  *  This main class creates the necessary implementation objects and starts the game off.
  * 
  * @author  Michael Kolling and David J. Barnes
- * @version 2.0 (Jan 2003)
+ * @author Antoine Gélin
+ * @version 3.0 (May 2017)
  */
 
 public class Game
 {
-	private UserInterface aGUI;
-	private GameEngine aEngine;
+    private UserInterface aGUI;
+    private GameEngine aEngine;
 
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
-		aEngine = new GameEngine();
-		aGUI = new UserInterface(aEngine);
-		aEngine.setGUI(aGUI);
+        aEngine = new GameEngine();
+        aGUI = new UserInterface(aEngine);
+        aEngine.setGUI(aGUI);
+    }
+
+    public static void main( String[] pArgs ) { 
+        GameEngine vEngine = new GameEngine();
+        UserInterface vGUI = new UserInterface(vEngine);
+        vEngine.setGUI(vGUI);
     }
 }
