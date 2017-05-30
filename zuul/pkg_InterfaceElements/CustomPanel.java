@@ -1,10 +1,11 @@
 package pkg_InterfaceElements;
 /**
- * @author Pour l'idée du override du paintComponent :
- * @author https://www.abeautifulsite.net/java-game-programming-for-beginners
+ * Cette classe est le centre de l'interface "point and click" du jeu
+ * Elle genere les choses à y afficher, les affiche et gère les actions de clics de la souris
+ * C'est un JPanel custom
  * 
- * @author pour le redimensionement de l'image
- * @author https://stackoverflow.com/questions/11959758/java-maintaining-aspect-ratio-of-jpanel-background-image
+ * 
+
  * 
  * @author pour le clic de souris
  * @author https://stackoverflow.com/questions/12396066/how-to-get-location-of-a-mouse-click-relative-to-a-swing-window
@@ -29,6 +30,10 @@ public class CustomPanel extends JPanel implements MouseListener {
     private int bgWidth;
     private int bgHeight;
 
+    /**
+     * Constructeur naturel de CustomPanel
+     * @param pGameEngine le GameEngine qui gère le jeu
+     */
     public CustomPanel(final GameEngine pGameEngine)
     {
         super();
@@ -39,6 +44,11 @@ public class CustomPanel extends JPanel implements MouseListener {
         addMouseListener(this);
     }
 
+    /**
+     * Sert à peindre les differents elements ( le fond les items puis le personnage) sur l'écran 
+     * @author Pour l'idée du override du paintComponent :
+     * @author https://www.abeautifulsite.net/java-game-programming-for-beginners
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -49,9 +59,9 @@ public class CustomPanel extends JPanel implements MouseListener {
         for (Sprite vSprite : this.aSprites.values()){
             if(vSprite.estVisible()){
                 int adjustedHeight = vSprite.getHeight()*this.bgHeight/100;
-                vSprite.setAdjustedHeight(adjustedHeight);
+                
                 Image rescaledImage = vSprite.getImage().getScaledInstance(-1,adjustedHeight,Image.SCALE_SMOOTH);;
-                vSprite.setAdjustedWidth(rescaledImage.getHeight(this));
+               
                 int adjustedX = vSprite.getX()*this.bgWidth/100 ;
                 int adjustedY = vSprite.getY()*this.bgHeight/100 ;
                 g2d.drawImage(rescaledImage, adjustedX, adjustedY, this);
@@ -59,6 +69,11 @@ public class CustomPanel extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Fait en sorte que l'image soit toujours visible
+     * @author pour le redimensionement de l'image
+     * @author https://stackoverflow.com/questions/11959758/java-maintaining-aspect-ratio-of-jpanel-background-image
+     */
     @Override
     public Dimension getPreferredSize() {
         if (this.getSize().equals(new Dimension(0,0))){
@@ -69,6 +84,16 @@ public class CustomPanel extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Redimensionne l'image de telle sorte qu'elle ait tjs la meme largeur que la fenetre
+     * et eviter que l'on ne puisse pas cliquer à droite ou qu'il ya ait du vide
+     * 
+     * @param pImage l'image de fond à mette à l'echelle
+     * @return vImg l'image de fond à l'echelle
+     * 
+     * @author pour le redimensionement de l'image
+     * @author https://stackoverflow.com/questions/11959758/java-maintaining-aspect-ratio-of-jpanel-background-image
+     */
     public Image scaleBG(final Image pImage){
         Image vImg = pImage;
         try{
@@ -76,28 +101,43 @@ public class CustomPanel extends JPanel implements MouseListener {
             this.bgHeight = vImg.getHeight(this);
             this.bgWidth = vImg.getWidth(this);
         }
-        catch(NullPointerException e){System.out.println("bug ");}
+        catch(NullPointerException e){System.out.println();}
         //requis pour eviter des exceptions au demarrage du prog 
         //(dimensions pas encore initialisées au 1er passage
 
         return vImg;
     }
 
+    /**
+     * Definit l'image de fond
+     * @param l'image à mettre en fond
+     */
     public void setBGImage(final Image pImage){
         this.aBGImage = pImage;
         repaint();
     }
 
+    /**
+     * Ajoute un element par dessus l'image
+     * @param pSprite le Sprite de l'element à ajouter
+     */
     public void addSprite(final Sprite pSprite){
         this.aSprites.put(pSprite.getName(),pSprite);
         repaint();
     }
 
+    /**
+     * Ajoute le sprite du joueur
+     * @param pSprite le Sprite du joueur
+     */
     public void setAsPlayerSprite( final Sprite pSprite){
         this.aPlayerSprite = pSprite;
         addSprite(pSprite);
     }
 
+    /**
+     * Remet à jour les elements Sprite présents
+     */
     public void resetSprites(){
         this.aSprites = new HashMap<String,Sprite>();
         repaint();
@@ -123,6 +163,9 @@ public class CustomPanel extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * Methode appelée quand on clique sur l'un des boutons de la souris
+     */
     @Override
     public void mouseClicked(MouseEvent pEvent) {
         int vX = pEvent.getX()*100/this.bgWidth;
@@ -177,14 +220,17 @@ public class CustomPanel extends JPanel implements MouseListener {
                     for (Item vI : vIArray){
                         vSArray[i]= "drop "+vI.getName();
                     }
-                     vSArray[vIArray.length] = "inventaire";
+                    vSArray[vIArray.length] = "inventaire";
                 }
                 else {
                     vSArray = new String[]{"inventaire"};
                 }
                 this.aEngine.getUI().setButtons(vSArray);
             }
-            
+            else if (vItemName.equals("comte")){
+                this.aEngine.getUI().setButtons(new String[]{"talk comte"});
+            }
+
             else{
                 this.aEngine.getUI().setButtons(new String[]{"take "+vItemName,"use "+vItemName});
             }
@@ -192,13 +238,12 @@ public class CustomPanel extends JPanel implements MouseListener {
 
         //CLIC MILIEU
         if (pEvent.getButton() == MouseEvent.BUTTON2) {
-            this.aPlayerSprite.tpTo(vX,vY);
+           
         }
 
         //CLIC DROIT
         if (pEvent.getButton() == MouseEvent.BUTTON3) {
-            this.aPlayerSprite.tpTo(50,50);
-            System.out.println(pEvent.getX()+"  , bg width "+this.bgWidth);
+           
         }
 
     }

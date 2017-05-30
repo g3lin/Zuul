@@ -1,13 +1,8 @@
+
+
+
 package pkg_InterfaceElements;
-/**
- * @author pour la transformation en jtextPane du champ de texte 
- * @author pour une meilleure flexibilité du chanp de texte
- * @author https://stackoverflow.com/questions/4059198/jtextpane-appending-a-new-string
- * 
- * @author importation d'une police custom
- * @author https://stackoverflow.com/questions/24800886/how-to-import-a-custom-java-awt-font-from-a-font-family-with-multiple-ttf-files
- * 
- */
+
 import pkg_EngineElements.GameEngine;
 import pkg_EngineElements.Room;
 import pkg_EngineElements.Item;
@@ -35,14 +30,17 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.util.Stack; 
 
-// import java.awt.image.*;
 
 /**
- * This class implements a simple graphical user interface with a text entry
- * area, a text output area and an optional image.
+ * Cette classe est le centre de l'interface graphique du jeu
+ * Elle genere les boutons, interfaces et zones de texte du jeu
  * 
- * @author Michael Kolling (DB edited)
- * @version 1.0 (Jan 2003)
+ * @author pour la transformation en jtextPane du champ de texte 
+ * @author pour une meilleure flexibilité du chanp de texte
+ * @author https://stackoverflow.com/questions/4059198/jtextpane-appending-a-new-string
+ * 
+ * @author importation d'une police custom
+ * @author https://stackoverflow.com/questions/24800886/how-to-import-a-custom-java-awt-font-from-a-font-family-with-multiple-ttf-files
  */
 public class UserInterface implements ActionListener
 {
@@ -69,6 +67,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Print out some text into the text area.
+     * @param pText le texte à imprimer
      */
     public void print( final String pText )
     {
@@ -81,6 +80,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Print out some text into the text area, followed by a line break.
+     * @param pText  le texte à imprimer
      */
     public void println( final String pText )
     {
@@ -89,6 +89,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Show an image file in the interface.
+     * @param pImageName l'url de l'image
      */
     public void showImage( final String pImageName )
     {
@@ -103,6 +104,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Enable or disable input in the input field.
+     * @param pOnOff pour activer ou desactiver
      */
     public void enable( final boolean pOnOff )
     {
@@ -184,17 +186,28 @@ public class UserInterface implements ActionListener
         setSprites();
     } // createGUI()
 
+    /**
+     * Reset les boutons de l'interface
+     */
     public void resetButtons(){
         this.aButtonsHolder.removeAll();
         this.aStackButtons = new Stack<JButton>();
     }
 
+    /**
+     * Ajoute un bouton à l'interface
+     * @param JButton le bouton à ajouter
+     */
     public void addButton( final JButton pB){
         pB.addActionListener(this);
         this.aButtonsHolder.add(pB);
         this.aStackButtons.push(pB);
     }
 
+    /**
+     * Met en place l'ensemble de boutons
+     * @param pSArray les noms des boutons à ajouter dans un tableau de String
+     */
     public void setButtons(final String[] pSArray){
         resetButtons();
         for (String vS : pSArray){
@@ -202,6 +215,10 @@ public class UserInterface implements ActionListener
         }
     }
 
+    /**
+     * Remet à jour les sprites de l'inteface point and click
+     */
+    
     public void setSprites(){
         this.aUI.resetSprites();
         Room vRoom = this.aEngine.getPlayer().getCurrentRoom();
@@ -244,6 +261,10 @@ public class UserInterface implements ActionListener
         this.aEngine.interpretCommand( vInput );
     } // processCommand()
 
+    /**
+     * Met à jour le temps restant sur l'interface
+     * @param pTime le temps restant en secondes
+     */
     public void updateTimeGUI(final int pTime){
         this.aTimer.setText(pTime/60+":"+pTime%60);
 

@@ -6,9 +6,8 @@ import javax.imageio.ImageIO;
 import java.lang.InterruptedException;
 
 
-
 /**
- * Un cercle qui peut etre manipule et qui se dessine sur une toile (canvas).
+ * Un element qui contient une image pouvant etre affichée sur un CustomPanel
  * 
  * @author  Michael Kolling and David J. Barnes
  * @author  mod.by Denis BUREAU
@@ -27,15 +26,14 @@ public class Sprite
     private int     aAdjHeight;
     private int     aAdjWidth;
 
-    /**
-     * Cree un nouveau cercle avec les position et couleur par defaut.
-     */
 
     /**
-     * Cree un nouveau cercle avec les position et couleur donnés en paramère et le rend visible auto
-     * @param pdiametre diametre du cercle
-     * @param pcoordx positionx du cercle
-     * @param pcoordY position y du cercle
+     * Cree un nouveau Sprite 
+     * @param pName le nom du Sprite
+     * @param pImageURI le chemein d'acces à l'image
+     * @param pcoordX positionx du Sprite en pourcentage
+     * @param pcoordY position y du Sprite en pourcentage
+     * @param pheight la hauteur du Sprite en pourcentage
      */
     public Sprite(String pName,String pImageURI,int pcoordX,int pcoordY,int pHeight)
     {
@@ -54,7 +52,7 @@ public class Sprite
     } // Cercle()
 
     /**
-     * Rend ce cercle visible.
+     * Rend ce sprite visible.
      */
     public void rendVisible()
     {
@@ -62,27 +60,45 @@ public class Sprite
     } // rendVisible()
 
     /**
-     * Rend ce cercle invisible.
+     * Rend ce sprite invisible.
      */
     public void rendInvisible()
     {
         this.aEstVisible= false;
     } // rendInvisible()
 
+    /**
+     * accesseur de l'etat de visibilité
+     * @return visibilité
+     */
     public boolean estVisible(){
         return this.aEstVisible;
     }
 
+    /**
+     * accesseur de l'image
+     * @return image
+     */
     public Image getImage(){
         return this.aImage;
     }
 
+    /**
+     * permet de mod les attributs de position x et y
+     * @param x le x
+     * @param y le y
+     */
     public void tpTo(final int pX, final int pY)
     {
         this.aXPosition = pX;
         this.aYPosition = pY;
     }
 
+    /**
+     * appelle la methode deplacement lent en horizonal puis vertical
+     * @param x le x
+     * @param y le y
+     */
     public void walkTo(final int pX, final int pY)
     {
         depLentHorizontal(pX-this.aXPosition);
@@ -90,8 +106,8 @@ public class Sprite
     }
 
     /**
-     * Deplace le cercle horizontalement de 'pDistance' pixels.
-     * @param pDistance nb de pixels dont il faut se deplacer vers la droite
+     * Deplace le Sprite horizontalement.
+     * @param pDistance nb de poucents dont il faut se deplacer vers la droite
      */
     public void depHorizontal( final int pDistance )
     {
@@ -99,8 +115,8 @@ public class Sprite
     } // depHorizontal()
 
     /**
-     * Deplace le cercle verticalement de 'pDistance' pixels.
-     * @param pDistance nb de pixels dont il faut se deplacer vers le bas
+     * Deplace le Sprite verticalement.
+     * @param pDistance nb de pourcents dont il faut se deplacer vers le bas
      */
     public void depVertical( final int pDistance )
     {
@@ -108,8 +124,8 @@ public class Sprite
     } // depVertical()
 
     /**
-     * Deplace lentement le cercle horizontalement de 'pDistance' pixels.
-     * @param pDistance nb de pixels dont il faut se deplacer vers la droite
+     * Deplace lentement le Sprite horizontalement.
+     * @param pDistance nb de pourcents dont il faut se deplacer vers la droite
      */
     public void depLentHorizontal( final int pDistance )
     {
@@ -134,8 +150,8 @@ public class Sprite
     } // depLentHorizontal()
 
     /**
-     * Deplace lentement le carre verticalement de 'pDistance' pixels.
-     * @param pDistance nb de pixels dont il faut se deplacer vers le bas
+     * Deplace lentement le Sprite verticalement.
+     * @param pDistance nb de pourcents dont il faut se deplacer vers le bas
      */
     public void depLentVertical( final int pDistance )
     {
@@ -159,7 +175,8 @@ public class Sprite
     } // depLentVertical()
 
     /**
-     * 
+     * accesseur du x
+     * @return X
      */
     public int getX()
     {
@@ -168,7 +185,8 @@ public class Sprite
     } //getposition
 
     /**
-     * 
+     * accesseur du y
+     * @return Y
      */
     public int getY()
     {
@@ -177,63 +195,28 @@ public class Sprite
     } //getposition
 
     /**
-     * 
+     * accesseur de la hauteur du sprite
+     * @return Hauteur en pourcents
      */
     public int getHeight()
     {
         return this.aHeight;
 
     } //getposition
-    
-    
-    
-    /**
-     * 
-     */
-    public void setAdjustedHeight(final int pH)
-    {
-        this.aAdjHeight = pH;
 
-    }
     
-    /**
-     * 
-     */
-    public void setAdjustedWidth(final int pW)
-    {
-        this.aAdjHeight = pW;
-
-    }
     
-    /**
-     * 
-     */
-    public int getAdjustedHeight()
-    {
-        return this.aAdjHeight;
-
-    }
-    
-    /**
-     * 
-     */
-    public int getAdjustedWidth()
-    {
-        return this.aAdjWidth;
-
-    } //getposition
 
     /**
-     * 
+     * accesseur du nom
+     * @return nom du sprite
      */
     public String getName()
     {
         return this.aName;
 
     } //getposition
-    
 
-    
     
     
 } // Cercle
