@@ -133,23 +133,24 @@ public class GameEngine
         Item vCookie = new Item(15,"cookie","un cookie brillant et attirant");
         Item vBeamer = new Item(600,"beamer","un beamer, objet à l'apparence futuristique");
         String[] vDialC = new String[] {"bonjour et bienvenue dans mon chateau",
-                                        "Vous pouvez me suivre dans la bibliotheque",
-                                        "Vous pouvez rester dans votre chambre le temps que l'orage cesse"};
-        PNJElement vPNJComte = new PNJElement("comte", "le comte du chateau", vDialC);
+                "Vous pouvez me suivre dans la bibliotheque",
+                "Vous pouvez rester dans votre chambre le temps que l'orage cesse"};
+
+        Room[] vCPattern = new Room[] { null, vBibliotheque, null};
+        PNJElement vPNJComte = new PNJElement("comte", "le comte du chateau", vDialC, vCPattern, this);
 
         vCouloirF.getItems().setItem(vMontre);
         vCouloirF.getItems().setItem(vMarteau);
 
         vHall.getItems().setItem(vBague);
         vHall.getCharacters().setItem(vPNJComte);
+        vPNJComte.setRoom(vHall);
 
         vSalleEquipement.getItems().setItem(vCookie);
         vSalleEquipement.getItems().setItem(vBeamer);
-        
-        
 
     }
-
+    
     public void createTimer(){
         UserInterface vGUI = this.aGUI;
 
@@ -206,6 +207,15 @@ public class GameEngine
         this.aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
         if(this.aPlayer.getCurrentRoom().getImageName() != null)
         {this.aGUI.showImage(this.aPlayer.getCurrentRoom().getImageName());}
+        this.aGUI.setSprites();
+    }
+
+    public void movePNJRoom(final PNJElement pPNJ ,final Room pR){
+       ItemList vIL = pPNJ.getRoom().getCharacters();
+        
+       vIL.takeItem("comte");
+        System.out.println(vIL.getItemArray().toString());
+        pR.getCharacters().setItem(pPNJ);
         this.aGUI.setSprites();
     }
 

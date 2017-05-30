@@ -1,6 +1,5 @@
 package pkg_EngineElements;
 
-
 /**
  * Write a description of class Character here.
  * 
@@ -12,17 +11,21 @@ public class PNJElement extends Item
     // instance variables - replace the example below with your own
     private String[] aDialogues;
     private int aDialInt;
-    
+    private Room[] aDepPattern;
+
+    private GameEngine aGE;
     private ItemList aItems;
     private Room aRoom;
 
     /**
      * Constructor for objects of class Character
      */
-    public PNJElement(final String pName, final String pDescription, final String[] pDialogues)
+    public PNJElement(final String pName, final String pDescription, final String[] pDialogues, final Room[] pDepPattern, final GameEngine pGE)
     {
         super(9999,pName, pDescription);
         this.aDialogues = pDialogues;
+        this.aDepPattern = pDepPattern;
+        this.aGE = pGE;
         this.aDialInt =0;
     }
 
@@ -35,21 +38,23 @@ public class PNJElement extends Item
         {
             this.aDialInt ++ ;
         }
+
+        if (this.aDepPattern[this.aDialInt-1] != null){
+            Room vR = this.aDepPattern[this.aDialInt-1];
+            this.aGE.movePNJRoom(this,vR);
+        }
+
         return this.aDialogues[this.aDialInt -1];
     }
-    
-    public void goToRoom(final Room pR){
-        
-    }
-    
+
     public void setRoom(final Room pRoom){
         this.aRoom = pRoom;
     }
-    
+
     public Room getRoom(){
         return this.aRoom;
     }
-    
+
     public ItemList getItems(){
         return this.aItems;
     }
