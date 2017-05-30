@@ -132,14 +132,21 @@ public class GameEngine
         Item vMarteau = new Item(500,"marteau","un marteau de bricolage");
         Item vCookie = new Item(15,"cookie","un cookie brillant et attirant");
         Item vBeamer = new Item(600,"beamer","un beamer, objet à l'apparence futuristique");
+        String[] vDialC = new String[] {"bonjour et bienvenue dans mon chateau",
+                                        "Vous pouvez me suivre dans la bibliotheque",
+                                        "Vous pouvez rester dans votre chambre le temps que l'orage cesse"};
+        PNJElement vPNJComte = new PNJElement("comte", "le comte du chateau", vDialC);
 
         vCouloirF.getItems().setItem(vMontre);
         vCouloirF.getItems().setItem(vMarteau);
 
         vHall.getItems().setItem(vBague);
+        vHall.getCharacters().setItem(vPNJComte);
 
         vSalleEquipement.getItems().setItem(vCookie);
         vSalleEquipement.getItems().setItem(vBeamer);
+        
+        
 
     }
 

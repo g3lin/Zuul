@@ -43,6 +43,7 @@ public class CommandWords
         aCommands.put(CommandWord.USE,new UseCommand());
         aCommands.put(CommandWord.STUFF,new InventaireCommand());
         aCommands.put(CommandWord.ALEA,new AleaCommand());
+        aCommands.put(CommandWord.TALK,new TalkCommand());
         
     } // CommandWords()
 

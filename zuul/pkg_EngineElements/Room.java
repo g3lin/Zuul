@@ -10,6 +10,7 @@ public class Room
     private HashMap<String,Room> aExits;
     private String aImageName;
     private ItemList aItems;
+    private ItemList aCharacters;
 
     /**
      * Constructeur mettant en place la description
@@ -22,6 +23,7 @@ public class Room
         this.aExits = new  HashMap<String,Room>();
         this.aImageName = pImage;
         this.aItems= new ItemList();
+        this.aCharacters = new ItemList();
     }
 
     /**
@@ -59,6 +61,10 @@ public class Room
         if (! this.aItems.isEmpty() ) {
             vDescription += "\n Vous trouvez dans cette salle :"+this.aItems.inventory();
         }
+         if (! this.aCharacters.isEmpty() ) {
+            vDescription += "\n Vous voyez au milieu de la pièce :"+this.aCharacters.inventory();
+        }
+
         return vDescription;
     }
 
@@ -74,6 +80,10 @@ public class Room
 
     public ItemList getItems(){
         return this.aItems;
+    }
+    
+    public ItemList getCharacters(){
+        return this.aCharacters;
     }
 
     /**
