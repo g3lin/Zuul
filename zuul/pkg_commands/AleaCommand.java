@@ -2,7 +2,7 @@ package pkg_commands;
 
 import pkg_EngineElements.*;
 /**
- * Implementation of the 'quit' user command.
+ * Implementation of the 'alea' user command.
  * 
  * @author Michael Kolling and David J. Barnes
  * @version 2011.07.31
@@ -10,16 +10,15 @@ import pkg_EngineElements.*;
 public class AleaCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class AleaCommand
      */
     public AleaCommand()
     {
     }
 
     /**
-     * "Quit" was entered. Check the argument to see whether
-     * we really quit the game. Return true, if we should quit, false
-     * otherwise.
+     * triche dans le jeu en donnant une salle au lieu du hasard de la transporterRoom
+     * @param pGE le GameEngine du jeu
      */
     public void execute(GameEngine pGE)
     {

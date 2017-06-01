@@ -18,8 +18,7 @@ public class QuitCommand extends Command
 
     /**
      * "Quit" was entered. Check the argument to see whether
-     * we really quit the game. Return true, if we should quit, false
-     * otherwise.
+     * we really quit the game. 
      */
     public void execute(GameEngine pGE)
     {

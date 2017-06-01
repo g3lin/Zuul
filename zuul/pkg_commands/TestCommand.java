@@ -14,14 +14,15 @@ import java.io.FileNotFoundException;
 public class TestCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class TestCommand
      */
     public TestCommand()
     {
     }
 
     /**
-     *  
+     *  cherche le fichier de test correspondant et si il le trouve va l'executer
+     *  @param pGE le GameEngine du jeu
      */
     public void execute(GameEngine pGE)
     {

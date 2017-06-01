@@ -55,6 +55,7 @@ public class Room
 
     /**
      * affiche le string de la localisation
+     * @return la string contenant la description de la room, les objets et pnj presents dedans
      */
     public String getLongDescription(){
         String vDescription = "Vous êtes dans "+ this.getDescription()+"\n Vous pouvez aller vers: "+this.getExitString() ;
@@ -70,6 +71,7 @@ public class Room
 
     /**
      * affiche le string des sorties disponibles en sortant de cette salle
+     * @return String contenant les sorties
      */
     public String getExitString(){
         StringBuilder vExits = new StringBuilder( "Exits:" );
@@ -78,16 +80,25 @@ public class Room
         return vExits.toString();
     }
 
+    /**
+     * donne les items de la salle
+     * @return le sitems contenus dans la sallle
+     */
     public ItemList getItems(){
         return this.aItems;
     }
     
+    /**
+     * donne les pnj de la salle
+     * @return les pnj contenus dans la sallle
+     */
     public ItemList getCharacters(){
         return this.aCharacters;
     }
 
     /**
      * Return a string describing the room's image name
+     * @return le nom du fichier de l'image
      */
     public String getImageName()
     {

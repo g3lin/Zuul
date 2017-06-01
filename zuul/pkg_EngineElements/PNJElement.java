@@ -14,7 +14,6 @@ public class PNJElement extends Item
     private Room[] aDepPattern;
 
     private GameEngine aGE;
-    private ItemList aItems;
     private Room aRoom;
 
     /**
@@ -30,7 +29,7 @@ public class PNJElement extends Item
     }
 
     /**
-     *
+     *  fait parler le PNJ et verifie si il doit se deplacer
      */
     public String talk()
     {
@@ -47,15 +46,21 @@ public class PNJElement extends Item
         return this.aDialogues[this.aDialInt -1];
     }
 
+    /**
+     * definit la room où est le pnj
+     * @param pRoom la salle 
+     */
     public void setRoom(final Room pRoom){
         this.aRoom = pRoom;
     }
 
+    
+    /**
+     * donne la room où est le pnj
+     * @return la salle
+     */
     public Room getRoom(){
         return this.aRoom;
     }
 
-    public ItemList getItems(){
-        return this.aItems;
-    }
 }

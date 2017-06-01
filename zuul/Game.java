@@ -31,8 +31,6 @@ public class Game
     }
 
     public static void main( String[] pArgs ) { 
-        GameEngine vEngine = new GameEngine();
-        UserInterface vGUI = new UserInterface(vEngine);
-        vEngine.setGUI(vGUI);
+        new Game();
     }
 }

@@ -4,11 +4,6 @@ package pkg_InterfaceElements;
  * Elle genere les choses à y afficher, les affiche et gère les actions de clics de la souris
  * C'est un JPanel custom
  * 
- * 
-
- * 
- * @author pour le clic de souris
- * @author https://stackoverflow.com/questions/12396066/how-to-get-location-of-a-mouse-click-relative-to-a-swing-window
  */
 import pkg_EngineElements.GameEngine;
 import pkg_EngineElements.Item;
@@ -59,9 +54,9 @@ public class CustomPanel extends JPanel implements MouseListener {
         for (Sprite vSprite : this.aSprites.values()){
             if(vSprite.estVisible()){
                 int adjustedHeight = vSprite.getHeight()*this.bgHeight/100;
-                
+
                 Image rescaledImage = vSprite.getImage().getScaledInstance(-1,adjustedHeight,Image.SCALE_SMOOTH);;
-               
+
                 int adjustedX = vSprite.getX()*this.bgWidth/100 ;
                 int adjustedY = vSprite.getY()*this.bgHeight/100 ;
                 g2d.drawImage(rescaledImage, adjustedX, adjustedY, this);
@@ -143,21 +138,33 @@ public class CustomPanel extends JPanel implements MouseListener {
         repaint();
     }
 
+    /**
+     * methode imposée par l'implement de MouseListener
+     */
     @Override
     public void mousePressed(MouseEvent e) {
 
     }
 
+    /**
+     * methode imposée par l'implement de MouseListener
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
+    /**
+     * methode imposée par l'implement de MouseListener
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
 
     }
 
+    /**
+     * methode imposée par l'implement de MouseListener
+     */
     @Override
     public void mouseExited(MouseEvent e) {
 
@@ -165,7 +172,11 @@ public class CustomPanel extends JPanel implements MouseListener {
 
     /**
      * Methode appelée quand on clique sur l'un des boutons de la souris
+     * 
+     * @author pour le clic de souris
+     * @author https://stackoverflow.com/questions/12396066/how-to-get-location-of-a-mouse-click-relative-to-a-swing-window
      */
+    
     @Override
     public void mouseClicked(MouseEvent pEvent) {
         int vX = pEvent.getX()*100/this.bgWidth;
@@ -238,12 +249,12 @@ public class CustomPanel extends JPanel implements MouseListener {
 
         //CLIC MILIEU
         if (pEvent.getButton() == MouseEvent.BUTTON2) {
-           
+
         }
 
         //CLIC DROIT
         if (pEvent.getButton() == MouseEvent.BUTTON3) {
-           
+
         }
 
     }

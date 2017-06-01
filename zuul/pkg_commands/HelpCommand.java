@@ -21,7 +21,6 @@ public class HelpCommand extends Command
     /**
      * Print out some help information. Here we print some stupid, 
      * cryptic message and a list of the command words.
-     * Returns always false.
      */
     public void execute(GameEngine pGE)
     {

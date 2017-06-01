@@ -2,7 +2,7 @@ package pkg_commands;
 
 import pkg_EngineElements.*;
 /**
- * Implementation of the 'quit' user command.
+ * Implementation of the 'inventaire' user command.
  * 
  * @author Michael Kolling and David J. Barnes
  * @version 2011.07.31
@@ -10,16 +10,14 @@ import pkg_EngineElements.*;
 public class InventaireCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class InventaireCommand
      */
     public InventaireCommand()
     {
     }
 
     /**
-     * "Quit" was entered. Check the argument to see whether
-     * we really quit the game. Return true, if we should quit, false
-     * otherwise.
+     * affiche l'inventaire du joueur
      */
     public void execute(GameEngine pGE)
     {

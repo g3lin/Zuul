@@ -2,7 +2,7 @@ package pkg_commands;
 
 import pkg_EngineElements.*;
 /**
- * Implementation of the 'quit' user command.
+ * Implementation of the 'eat' user command.
  * 
  * @author Michael Kolling and David J. Barnes
  * @version 2011.07.31
@@ -10,14 +10,14 @@ import pkg_EngineElements.*;
 public class EatCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class EatCommand
      */
     public EatCommand()
     {
     }
 
     /**
-     *  
+     *  affiche que l'on mange
      */
     public void execute(GameEngine pGE)
     {

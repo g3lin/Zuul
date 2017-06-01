@@ -5,10 +5,10 @@ import java.util.Map;
 import pkg_InterfaceElements.Sprite;
 
 /**
- * Write a description of class Player here.
+ * Objet pour le joueur
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author GELIN
+ * @version 2017
  */
 public class Player
 {
@@ -36,49 +36,90 @@ public class Player
     }
 
     /**
-     *
+     * definit la room actuelle du joueur
+     * @param pRoom la salle
      */
     public void setCurrentRoom(final Room pRoom)
     {
         this.aCurrentRoom = pRoom;
     }
 
+    /**
+     * retourne le sprite du joueur
+     * @return sprite du joueur
+     */
     public Sprite getSprite(){
         return this.aSprite;
     }
 
+    /**
+     * donne la room dans laquelle le joueur est
+     * @return room actuelle
+     */
     public Room getCurrentRoom(){
         return this.aCurrentRoom;
     }
 
+    /**
+     * donne la l'historiqque de deplacement du joueur
+     * @return stack des deplacements précédents
+     */
     public Stack<Room> getHistory(){
         return this.aHistory;
     }
-    
+
+    /**
+     * reinitialise la l'historiqque de deplacement du joueur
+     */
     public void resetHistory(){
         this.aHistory = new Stack<Room>();
     }
 
+    /**
+     * donne les items du joueur
+     * @return l'itemlist associée au joueur
+     */
     public ItemList getItems(){
         return this.aItems;
     }
 
+    /**
+     * donne le poids de l'inventaire du joueur
+     * @return le poids 
+     */
     public int getPoids(){
         return this.aPoids;
     }
 
+    /**
+     * donne le poids max du joueur
+     * @return le poids  max
+     */
     public int getPoidsMax(){
         return this.aPoidsMax;
     }
 
+    /**
+     * met le poids du joueur
+     * @param pPoids le poids total de l'inventaire
+     */
     public void setPoids(final int pPoids){
         this.aPoids = pPoids;
     }
 
+    /**
+     * met le poids max  du joueur
+     * @param pPoids le poids max que peut avoir l'inventaire
+     */
     public void setPoidsMax(final int pPoids){
         this.aPoidsMax = pPoids;
     }
 
+    /**
+     * affiche tous les objets du joueur
+     * @return String contenant tous les objets que le joueur porte
+     */ 
+    
     public String getInventory(){
         String vString = "";
         if (! this.aItems.isEmpty() ) {

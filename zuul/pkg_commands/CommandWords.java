@@ -84,7 +84,8 @@ public class CommandWords
     }
 
     /**
-     * Print all valid commands to System.out.
+     * retourne les commandes valides
+     * @return commandes valides
      */
     public String showAll() 
     {

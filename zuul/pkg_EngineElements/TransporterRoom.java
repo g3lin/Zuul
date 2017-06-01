@@ -2,10 +2,10 @@ package pkg_EngineElements;
 
 import java.util.Random;
 /**
- * Write a description of class TransporterRoom here.
+ * Salle speciale qui tp dans une salle au hasard
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author GELIN
+ * @version 2017
  */
 public class TransporterRoom extends Room
 {
@@ -25,7 +25,7 @@ public class TransporterRoom extends Room
     /**
      * accesseur de la direction
      * @param pDirection la direction
-     * @return la room qui fait face à cette direction
+     * @return la room au hasard ou souhaitée si on afait alea
      */
     public Room getExit(final String pDirection){
         if (pDirection.equals("west")){
@@ -36,11 +36,18 @@ public class TransporterRoom extends Room
         }
     }
 
+    /**
+     * retoune la string des sorties modifiée pour la salle
+     */
     @Override
     public String getExitString(){
         return "une salle au hasard dans la maison à portée de l'appareil";
     }
 
+    /**
+     * trouve une salle random
+     * @return salle random
+     */
     public Room findARandomRoom(){
         if (aPseudoRandom == null){
             Random vRandomObject = new Random();
@@ -52,6 +59,10 @@ public class TransporterRoom extends Room
         }
     }
 
+    /**
+     * Truque le jeu et met une salle définie au lieu de random
+     * @param pRoom la salle vers laquelle il faut aller
+     */
     public void setPseudoRandom(final Room pR){
         this.aPseudoRandom = pR;
     }

@@ -1,8 +1,5 @@
 
-
-
 package pkg_InterfaceElements;
-
 import pkg_EngineElements.GameEngine;
 import pkg_EngineElements.Room;
 import pkg_EngineElements.Item;
@@ -30,17 +27,10 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.util.Stack; 
 
-
 /**
  * Cette classe est le centre de l'interface graphique du jeu
  * Elle genere les boutons, interfaces et zones de texte du jeu
  * 
- * @author pour la transformation en jtextPane du champ de texte 
- * @author pour une meilleure flexibilité du chanp de texte
- * @author https://stackoverflow.com/questions/4059198/jtextpane-appending-a-new-string
- * 
- * @author importation d'une police custom
- * @author https://stackoverflow.com/questions/24800886/how-to-import-a-custom-java-awt-font-from-a-font-family-with-multiple-ttf-files
  */
 public class UserInterface implements ActionListener
 {
@@ -115,6 +105,13 @@ public class UserInterface implements ActionListener
 
     /**
      * Set up graphical user interface.
+     * @author pour la transformation en jtextPane du champ de texte 
+     * @author pour une meilleure flexibilité du chanp de texte
+     * @author https://stackoverflow.com/questions/4059198/jtextpane-appending-a-new-string
+     * 
+     * 
+     * @author importation d'une police custom
+     * @author https://stackoverflow.com/questions/24800886/how-to-import-a-custom-java-awt-font-from-a-font-family-with-multiple-ttf-files
      */
     private void createGUI()
     {
@@ -218,7 +215,7 @@ public class UserInterface implements ActionListener
     /**
      * Remet à jour les sprites de l'inteface point and click
      */
-    
+
     public void setSprites(){
         this.aUI.resetSprites();
         Room vRoom = this.aEngine.getPlayer().getCurrentRoom();
@@ -232,6 +229,7 @@ public class UserInterface implements ActionListener
 
     /**
      * Actionlistener interface for entry textfield.
+     * @param l'actionevent
      */
     public void actionPerformed( final ActionEvent pEvent ) 
     {

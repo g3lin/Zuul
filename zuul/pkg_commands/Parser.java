@@ -34,6 +34,7 @@ public class Parser
     /**
      * Get a new command from the user. The command is read by
      * parsing the 'inputLine'.
+     * @param pInputline la ligne de commande
      */
     public Command getCommand( final String pInputLine ) 
     {
@@ -60,6 +61,7 @@ public class Parser
     } // getCommand(.)
     /**
      * Returns a String with valid command words.
+     * @return les commandes valides sous forme de String
      */
     public String showCommands() // bad name for this method !
     {

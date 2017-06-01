@@ -67,22 +67,43 @@ public class Item
         return this.aDescription;
     } // sampleMethod(.)
     
+    /**
+     * retourne le sprite associé à l'objet
+     * @return sprite associé
+     */
     public Sprite getSprite(){
         return this.aSprite;
     }
     
+    /**
+     * definit l'etat
+     * @param pstate nombre de l'etat
+     */
     public void setState(final int pState) {
         this.aState = pState;
     }
     
+    
+    /**
+     * retourne l'etat
+     * @return nombre de l'etat
+     */
     public int getState(){
         return this.aState;
     }
     
+    /**
+     * definit l'objet d'etat
+     * @param pstatevar objet de l'etat
+     */
     public void setStateVar(final Object pStateVar) {
         this.aStateVar = pStateVar;
     }
     
+    /**
+     * retourne l'objet de l'etat
+     * @return objet de l'etat
+     */
     public Object getStateVar(){
         return this.aStateVar;
     }

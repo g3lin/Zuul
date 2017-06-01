@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Implementation of the 'quit' user command.
+ * Implementation of the 'take' user command.
  * 
  * @author Michael Kolling and David J. Barnes
  * @version 2011.07.31
@@ -14,14 +14,15 @@ import java.io.FileNotFoundException;
 public class TakeCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class TakeCommand
      */
     public TakeCommand()
     {
     }
 
     /**
-     *  
+     *  prend un item dans la salle où est le joueur et va le mettre dans l'inventaire du joueur
+     *  si et seulement si il lui reste assez de place dans son inventaire
      */
     public void execute(GameEngine pGE)
     {

@@ -1,7 +1,7 @@
 package pkg_commands;
 import pkg_EngineElements.GameEngine;
 /**
- * Implementation of the 'quit' user command.
+ * Implementation of the 'look' user command.
  * 
  * @author Michael Kolling and David J. Barnes
  * @version 2011.07.31
@@ -9,14 +9,14 @@ import pkg_EngineElements.GameEngine;
 public class LookCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class LookCommand
      */
     public LookCommand()
     {
     }
 
     /**
-     *  
+     *  regarde autour et affiche la long description de la rooom actuelle  
      */
     public void execute(GameEngine pGE)
     {

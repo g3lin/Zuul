@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Implementation of the 'quit' user command.
+ * Implementation of the 'drop' user command.
  * 
  * @author Michael Kolling and David J. Barnes
  * @version 2011.07.31
@@ -15,14 +15,15 @@ import java.io.FileNotFoundException;
 public class DropCommand extends Command
 {
     /**
-     * Constructor for objects of class QuitCommand
+     * Constructor for objects of class DropCommand
      */
     public DropCommand()
     {
     }
 
     /**
-     *  
+     *  prend un item dans l'inventaire du joueur et le mose dans la piece où le joueur est actuellement
+     *  @param pGE le GameEngine du jeu
      */
     public void execute(GameEngine pGE)
     {
