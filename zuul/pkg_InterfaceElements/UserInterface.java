@@ -85,7 +85,7 @@ public class UserInterface implements ActionListener
     {
         Image vImage = null;
         try {
-            vImage = ImageIO.read(new File(pImageName));
+            vImage = ImageIO.read(this.getClass().getClassLoader().getResource( pImageName));
         } catch (IOException e) {
 
         }
@@ -116,7 +116,7 @@ public class UserInterface implements ActionListener
     private void createGUI()
     {
         this.aMyFrame = new JFrame( "Le Manoir de WanderStock" );
-        ImageIcon img = new ImageIcon("Images/icon.png");
+        ImageIcon img = new ImageIcon(this.getClass().getClassLoader().getResource("Images/icon.png"));
         this.aMyFrame.setIconImage(img.getImage());
         this.aEntryField = new JTextField( 34 );
         this.aEntryField.setMaximumSize(new Dimension(1000,50));
@@ -152,7 +152,7 @@ public class UserInterface implements ActionListener
 
         //PLACEMENT DE LA ZONE DE TEXTE
         try{
-            Font vFont = Font.createFont(Font.TRUETYPE_FONT, new File("font.ttf"));
+            Font vFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getClassLoader().getResource( "font.ttf").openStream());
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(vFont);
             Font vPS2PFont = new Font("Press Start 2P", Font.PLAIN, 15);
             this.aLog.setFont(vPS2PFont);

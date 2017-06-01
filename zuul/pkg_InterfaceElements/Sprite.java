@@ -40,7 +40,7 @@ public class Sprite
         this.aName = pName;
         this.aImage = null;
         try {
-            this.aImage = ImageIO.read(new File(pImageURI));
+            this.aImage = ImageIO.read(this.getClass().getClassLoader().getResource( pImageURI));
         } catch (IOException e) {
             System.out.print("probleme de chargement de l'image");
         }
