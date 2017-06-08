@@ -27,7 +27,6 @@ public class GameEngine
     private Player aPlayer;
     private Timer aTimer;
     private int aTime;
-    private ItemList atest;
 
     /**
      * constructeur par defaut de la classe Game
@@ -149,13 +148,11 @@ public class GameEngine
 
         vSalleEquipement.getItems().setItem(vCookie);
         vSalleEquipement.getItems().setItem(vBeamer);
+        
+        
 
     }
-
-    /**
-     * crée une instance de Timer et de timerElement 
-     * crée un timer qui s'enclenche toutes les secondes
-     */
+    
     public void createTimer(){
         UserInterface vGUI = this.aGUI;
 
@@ -166,25 +163,16 @@ public class GameEngine
 
     }
 
-    /**
-     * methode relai appalée par le timer pour mettre à jour l'affichage de du temps dans l'interface
-     * @param pTime temps restant en secondes
-     */
     public void updateTime(final int pTime){
         this.aGUI.updateTimeGUI(pTime);
     }
 
-    /**
-     * retourne le timer
-     * @return Timer
-     */
     public int getTime(){
         return this.aTime;
     }
 
     /**
-     * procedure affichant via la gui l'intro du jeu ainsi que la localisation du joueur
-     * crée aussi le timer au debut du jeu
+     * procedure affichant via S.o.p l'intro du jeu ainsi que la localisation du joueur
      */
     public void printWelcome() {
         aGUI.println("Welcome to the World of Zuul!");
@@ -194,18 +182,10 @@ public class GameEngine
         createTimer();
     }
 
-    /**
-     * retourne le joueur 
-     * @return joueur
-     */
     public Player getPlayer(){
         return this.aPlayer;
     }
 
-    /**
-     * retourne l'interface
-     * @return interface
-     */
     public UserInterface getUI(){
         return this.aGUI;
     }
@@ -214,6 +194,7 @@ public class GameEngine
      * methode permettant de prendre en charge les commandes
      * en fonction du 1er mot de la commande, va voir les différentes actions à effectuer
      * @param une command
+     * @return le fait ou non que le joueur veuille quitter
      */
     public void interpretCommand(final String pCommand){
 
@@ -223,10 +204,6 @@ public class GameEngine
 
     }
 
-    /**
-     * va à la salle fournie en parametre
-     * @param pRoom la salle vers laquelle se deplacer
-     */
     public void goToRoom(final Room pRoom){
         this.aPlayer.setCurrentRoom(pRoom);
         this.aGUI.println(this.aPlayer.getCurrentRoom().getLongDescription());
@@ -235,31 +212,17 @@ public class GameEngine
         this.aGUI.setSprites();
     }
 
-    /**
-     * change le PNJ donné de salle vers celle donnée
-     * @param pNJElement le pnj à deplacer
-     * @param pRoom la salle vers laquelle se deplacer
-     */
     public void movePNJRoom(final PNJElement pPNJ ,final Room pR){
-        ItemList vIL = pPNJ.getRoom().getCharacters();
-
-        vIL.takeItem(pPNJ.getName() );
-
+       ItemList vIL = pPNJ.getRoom().getCharacters();
+       vIL.takeItem("comte");
         pR.getCharacters().setItem(pPNJ);
         this.aGUI.setSprites();
     }
 
-    /**
-     * retourne les salles du jeu
-     * @return Rooms : hashmap des salles du jeu
-     */
     public HashMap<String,Room> getRooms(){
         return this.aRooms;
     }
 
-    /**
-     * affiche le game over à la fin du jeu
-     */
     public void gameOver(){
         this.aGUI.println("game over");
     }

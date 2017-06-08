@@ -32,14 +32,14 @@ public class TestCommand extends Command
         else {
             Scanner vScan;
             try { 
-                vScan = new Scanner( new File("tests/"+getSecondWord()+".txt"));
+                vScan = new Scanner(this.getClass().getClassLoader().getResource("tests/"+getSecondWord()+".txt").openStream());
                 while ( vScan.hasNextLine() ) {
                     String vLigne = vScan.nextLine();
                     pGE.interpretCommand(vLigne);
                 } // while
                 vScan.close();
             } // try
-            catch ( final FileNotFoundException pFNFE ) {
+            catch ( final Exception e ) {
                 pGE.getUI().println("fichier non trouvé");
             } // catch
 
