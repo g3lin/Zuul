@@ -7,10 +7,12 @@ import java.util.Iterator;
 public class Room
 {
     private String aDescription ;
+    private String aLookS ;
     private HashMap<String,Room> aExits;
     private String aImageName;
     private ItemList aItems;
     private ItemList aCharacters;
+    
 
     /**
      * Constructeur mettant en place la description
@@ -18,8 +20,9 @@ public class Room
      * @param pDescription la description de la piece
      * @param pImage le nom de l'image
      */
-    public Room(final String pDescription, String pImage){
+    public Room(final String pDescription,final String pLookS, String pImage){
         this.aDescription=pDescription;
+        this.aLookS = pLookS;
         this.aExits = new  HashMap<String,Room>();
         this.aImageName = pImage;
         this.aItems= new ItemList();
@@ -32,6 +35,10 @@ public class Room
      */
     public String getDescription() {
         return this.aDescription;
+    }
+    
+    public String getLookS() {
+        return this.aLookS;
     }
 
     /**

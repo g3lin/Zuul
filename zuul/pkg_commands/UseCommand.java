@@ -73,6 +73,30 @@ public class UseCommand extends Command
                 }
                 pGE.getUI().setSprites();
             }
+            
+            if (getSecondWord().equals("challenger")){
+                Item vItem = pGE.getPlayer().getCurrentRoom().getItems().takeItem(getSecondWord());
+                if ( vItem != null){
+                    new Challenge(pGE);
+                }
+                else{
+                    pGE.getUI().println("Vous ne trouvez pas l'objet que vous voulez utiliser dans la piece");
+                    pGE.getUI().println("Essayez de le poser si il est dans votre inventaire");
+                }
+                pGE.getUI().setSprites();
+            }
+            
+            if (getSecondWord().equals("boat")){
+                Item vItem = pGE.getPlayer().getCurrentRoom().getItems().takeItem(getSecondWord());
+                if ( vItem != null){
+                    pGE.win();
+                }
+                else{
+                    pGE.getUI().println("Vous ne trouvez pas l'objet que vous voulez utiliser dans la piece");
+                    pGE.getUI().println("Essayez de le poser si il est dans votre inventaire");
+                }
+                pGE.getUI().setSprites();
+            }
         }
 
     }

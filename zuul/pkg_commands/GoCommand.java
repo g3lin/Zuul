@@ -33,9 +33,15 @@ public class GoCommand extends Command
             String vDirection = getSecondWord() ;
             Room vNextRoom = pGE.getPlayer().getCurrentRoom().getExit(vDirection);
             if (vNextRoom == null){
-                pGE.getUI().println("There is no door !");
+                pGE.getUI().println("Impossible d'aller par là");
 
             }
+            
+            else if ((pGE.getPlayer().getCurrentRoom() == pGE.getRooms().get("entree"))&& (!pGE.getRooms().get("entree").getCharacters().isEmpty())){
+                pGE.getUI().println("Il est impoli de s'inviter chez quelqu'un comme ca");
+                pGE.getUI().println("Je vais plutot parler à l'homme en face de moi");
+            }
+            
             else{
                 pGE.getPlayer().getHistory().push(pGE.getPlayer().getCurrentRoom());
 

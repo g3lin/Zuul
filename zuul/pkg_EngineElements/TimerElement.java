@@ -13,7 +13,7 @@ public class TimerElement extends TimerTask
      * constructeur du Timer Element avec le temps max
      */
     public TimerElement(){
-        this.aTime = 150;
+        this.aTime = 420;
 
     }
 
@@ -38,8 +38,10 @@ public class TimerElement extends TimerTask
         this.aGE.updateTime(this.aTime);
 
         if (this.aTime == 0){
-            this.aTimer.cancel();
+            
             this.aGE.gameOver();
         }
     }
+    
+    
 }

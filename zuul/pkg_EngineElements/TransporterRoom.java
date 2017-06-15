@@ -14,9 +14,9 @@ public class TransporterRoom extends Room
     /**
      * Constructor for objects of class TransporterRoom
      */
-    public TransporterRoom (final String pDesc, final String pImg, final Room[] pARooms)
+    public TransporterRoom (final String pDesc,final String pLook, final String pImg, final Room[] pARooms)
     {
-        super(pDesc,pImg);
+        super(pDesc,pLook,pImg);
         this.aPseudoRandom = null;
         this.aAvailableRooms = pARooms;
     }

@@ -22,6 +22,7 @@ public class CustomPanel extends JPanel implements MouseListener {
     private Image aBGImage;
     private HashMap<String,Sprite> aSprites ;
     private Sprite aPlayerSprite;
+    private Sprite aFullScreenSprite;
     private int bgWidth;
     private int bgHeight;
 
@@ -36,6 +37,7 @@ public class CustomPanel extends JPanel implements MouseListener {
         bgWidth =500;
         bgHeight =800;
         aSprites = new HashMap<String,Sprite>();
+        this.aFullScreenSprite = null;
         addMouseListener(this);
     }
 
@@ -61,6 +63,12 @@ public class CustomPanel extends JPanel implements MouseListener {
                 int adjustedY = vSprite.getY()*this.bgHeight/100 ;
                 g2d.drawImage(rescaledImage, adjustedX, adjustedY, this);
             }
+        }
+        if (this.aFullScreenSprite != null){
+            int adjustedWidth = this.bgWidth;
+
+            Image rescaledImage = this.aFullScreenSprite.getImage().getScaledInstance(adjustedWidth,-1,Image.SCALE_SMOOTH);;
+            g2d.drawImage(rescaledImage, 0, 40, this);
         }
     }
 
@@ -110,6 +118,14 @@ public class CustomPanel extends JPanel implements MouseListener {
     public void setBGImage(final Image pImage){
         this.aBGImage = pImage;
         repaint();
+    }
+    
+    public void setFSSprite(final Sprite pS){
+        this.aFullScreenSprite = pS;
+    }
+    
+    public void resetFSSprite(){
+        setFSSprite(null);
     }
 
     /**
@@ -176,14 +192,15 @@ public class CustomPanel extends JPanel implements MouseListener {
      * @author pour le clic de souris
      * @author https://stackoverflow.com/questions/12396066/how-to-get-location-of-a-mouse-click-relative-to-a-swing-window
      */
-    
+
     @Override
     public void mouseClicked(MouseEvent pEvent) {
         int vX = pEvent.getX()*100/this.bgWidth;
         int vY = pEvent.getY()*100/this.bgHeight;
+        boolean vIsOver = this.aFullScreenSprite != null;
 
         //CLIC GAUCHE
-        if (pEvent.getButton() == MouseEvent.BUTTON1) {
+        if ((pEvent.getButton() == MouseEvent.BUTTON1) && !vIsOver) {
             this.aPlayerSprite.tpTo(vX,this.aPlayerSprite.getY());
 
             // CLICS POUR LES SORTIES
@@ -219,7 +236,7 @@ public class CustomPanel extends JPanel implements MouseListener {
             }
 
             if (vItemName == null){
-                this.aEngine.getUI().setButtons(new String[]{"look","eat","back"});
+                this.aEngine.getUI().setButtons(new String[]{"look","investigate","back"});
             }
 
             else if (vItemName.equals("player")){

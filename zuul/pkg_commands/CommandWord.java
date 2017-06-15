@@ -11,7 +11,7 @@ public enum CommandWord
     // commands.
      GO("go"), QUIT("quit"), HELP("help"), LOOK("look"),
      EAT("eat"), BACK("back"), TEST("test"), TAKE("take"), DROP("drop"), STUFF("inventaire"),
-     USE("use"), ALEA("alea"), TALK("talk"), UNKNOWN("?");
+     USE("use"), ALEA("alea"), TALK("talk"),INVESTIGATE("investigate"), UNKNOWN("?");
     
      // The command string.
     private String commandString;

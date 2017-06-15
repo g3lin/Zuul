@@ -26,6 +26,8 @@ public class PNJElement extends Item
         this.aDepPattern = pDepPattern;
         this.aGE = pGE;
         this.aDialInt =0;
+        getSprite().setHeight(33);
+        getSprite().tpTo(20, 50);
     }
 
     /**
@@ -33,7 +35,7 @@ public class PNJElement extends Item
      */
     public String talk()
     {
-        if (this.aDialInt <= this.aDialogues.length)
+        if (this.aDialInt < this.aDialogues.length)
         {
             this.aDialInt ++ ;
         }

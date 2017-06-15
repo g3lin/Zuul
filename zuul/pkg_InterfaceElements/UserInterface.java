@@ -67,7 +67,11 @@ public class UserInterface implements ActionListener
         catch(javax.swing.text.BadLocationException exc){System.out.print("bug du texte");}
         this.aLog.setCaretPosition( this.aLog.getDocument().getLength() );
     } // print(.)
-
+    
+    public void resetText(){
+        this.aLog.setText("");
+    }
+    
     /**
      * Print out some text into the text area, followed by a line break.
      * @param pText  le texte à imprimer
@@ -115,7 +119,7 @@ public class UserInterface implements ActionListener
      */
     private void createGUI()
     {
-        this.aMyFrame = new JFrame( "Le Manoir de WanderStock" );
+        this.aMyFrame = new JFrame( "Le Manoir" );
         ImageIcon img = new ImageIcon(this.getClass().getClassLoader().getResource("Images/icon.png"));
         this.aMyFrame.setIconImage(img.getImage());
         this.aEntryField = new JTextField( 34 );
@@ -138,13 +142,7 @@ public class UserInterface implements ActionListener
         // PLACEMENT DES BOUTONS
         this.aStackButtons = new Stack<JButton>();
         this.aButtonsHolder = new JPanel();
-        JButton vButton1 = new JButton("eat");
-        JButton vButton2 = new JButton("look");
-        JButton vButton3 = new JButton("back");
-
-        addButton(vButton1);
-        addButton(vButton2);
-        addButton(vButton3);
+        setButtons(new String[]{"help"});
 
         this.aTimer = new JLabel("timer");
         vPanel.add(this.aTimer);
@@ -223,8 +221,22 @@ public class UserInterface implements ActionListener
             Sprite vS = vI.getSprite();
             this.aUI.addSprite(vS);
         }
+        
+        for (Item vI :vRoom.getCharacters().getItemArray()){
+            Sprite vS = vI.getSprite();
+            this.aUI.addSprite(vS);
+        }
+        
         this.aUI.setAsPlayerSprite(this.aEngine.getPlayer().getSprite());
 
+    }
+    
+    public void setFSSprite(final Sprite pS){
+        this.aUI.setFSSprite(pS);
+    }
+    
+    public void resetFSSprite(){
+        this.aUI.resetFSSprite();
     }
 
     /**

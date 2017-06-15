@@ -204,7 +204,9 @@ public class Sprite
 
     } //getposition
 
-    
+    public void setHeight(final int vH){
+        this.aHeight = vH;
+    }
     
 
     /**

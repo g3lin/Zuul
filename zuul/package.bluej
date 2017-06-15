@@ -1,59 +1,10 @@
-<<<<<<< Updated upstream
-#BlueJ package file
-objectbench.height=100
-objectbench.width=1342
-package.editor.height=571
-package.editor.width=1521
-package.editor.x=216
-package.editor.y=165
-package.numDependencies=0
-package.numTargets=4
-package.showExtends=true
-package.showUses=true
-project.charset=UTF-8
-readme.editor.height=700
-readme.editor.width=900
-readme.editor.x=0
-readme.editor.y=0
-target1.editor.height=728
-target1.editor.width=907
-target1.editor.x=398
-target1.editor.y=27
-target1.height=50
-target1.name=Game
-target1.naviview.expanded=true
-target1.showInterface=false
-target1.type=ClassTarget
-target1.typeParameters=
-target1.width=80
-target1.x=70
-target1.y=40
-target2.height=62
-target2.name=pkg_InterfaceElements
-target2.type=PackageTarget
-target2.width=190
-target2.x=480
-target2.y=60
-target3.height=62
-target3.name=pkg_commands
-target3.type=PackageTarget
-target3.width=130
-target3.x=300
-target3.y=90
-target4.height=62
-target4.name=pkg_EngineElements
-target4.type=PackageTarget
-target4.width=170
-target4.x=300
-target4.y=10
-=======
 #BlueJ package file
 objectbench.height=76
 objectbench.width=1340
 package.editor.height=560
 package.editor.width=1242
-package.editor.x=90
-package.editor.y=145
+package.editor.x=188
+package.editor.y=43
 package.numDependencies=0
 package.numTargets=4
 package.showExtends=true
@@ -94,4 +45,3 @@ target4.type=PackageTarget
 target4.width=140
 target4.x=260
 target4.y=90
->>>>>>> Stashed changes
